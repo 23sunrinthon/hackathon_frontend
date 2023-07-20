@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
-const Switch = ({enabl₩ed, onClick}) => {
+const Switch = ({enabled, onClick}) => {
   return (
     <Container onPress={onClick}
       enabled={enabled}
