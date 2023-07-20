@@ -11,6 +11,10 @@ import {createStackNavigator} from '@react-navigation/stack';
 // import modalState from "@/store/modal";
 // import {useCallback, useEffect} from "react";
 // import messaging from "@react-native-firebase/messaging";
+<<<<<<< HEAD
+=======
+import Login from "../screens/Login"
+>>>>>>> e017c97589463fc38138db40af89ccb4d90e8d76
 import StoreSearch from '@components/StoreSearch';
 import BottomNavigation from './BottomNavigation';
 import Login from '../screens/Login';
@@ -62,12 +66,22 @@ const RootNavigator: React.FC = () => {
       screenOptions={{
         headerShown: false,
       }}>
+<<<<<<< HEAD
       {/* <Stack.Screen name="Main" component={Main} /> */}
       {/* <Stack.Screen name="Search" component={Search} /> */}
       {/* <Stack.Screen name="Auth" component={Auth} /> */}
       {/* <Stack.Screen name="Shop" component={Shop} /> */}
       {/* <Stack.Screen name="Reservation" component={Reservation} /> */}
       {/* <Stack.Screen name="ReservationResult" component={ReservationResult} /> */}
+=======
+      {/*<Stack.Screen name="Main" component={Main} />*/}
+      {/*<Stack.Screen name="Search" component={Search} />*/}
+      {/*<Stack.Screen name="Auth" component={Auth} />*/}
+      {/*<Stack.Screen name="Shop" component={Shop} />*/}
+      {/*<Stack.Screen name="Reservation" component={Reservation} />*/}
+      {/*<Stack.Screen name="ReservationResult" component={ReservationResult} />*/}
+      {/*<Stack.Screen name="Tab" component={Auth} />*/}
+>>>>>>> e017c97589463fc38138db40af89ccb4d90e8d76
       {/* <Stack.Screen name="Main" component={Main} /> */}
       {/* <Stack.Screen name="Search" component={Search} /> */}
       {/* <Stack.Screen name="Auth" component={Auth} /> */}
