@@ -20,6 +20,25 @@ const Home = ({navigation}) => {
   const [scrolled, setScrolled] = React.useState(false);
   const [showBack, setShowBack] = useState(true);
 
+  const PartyData = [
+    {
+      name: '선린공듀들',
+      rank1: '주현명',
+      rank2: '이서율',
+      rank3: '이하람',
+      myRank: 1,
+      myName: '주현명',
+    },
+    {
+      name: '선린공듀들',
+      rank1: '주현명',
+      rank2: '이서율',
+      rank3: '이하람',
+      myRank: 2,
+      myName: '주현명',
+    },
+  ];
+
   useFocusEffect(
     useCallback(() => {
       setShowBack(true);
@@ -64,8 +83,28 @@ const Home = ({navigation}) => {
               rowGap: 16,
             }}>
             <CardLayoutHorizontal>
-              <Card />
-              <Card />
+              <Card
+                name="선린공듀들"
+                rank1="주현명"
+                rank2="이서율"
+                rank3="이하람"
+                myRank={1}
+                onClick={() => {
+                  navigation.navigate('Party');
+                }}
+                myName="주현명"
+              />
+              <Card
+                name="애플파이"
+                rank1="오유성"
+                rank2="김강민"
+                rank3="김서하"
+                myRank={2}
+                onClick={() => {
+                  navigation.navigate('Party');
+                }}
+                myName="김강민"
+              />
             </CardLayoutHorizontal>
             <CardLayoutHorizontal>
               <Card />
@@ -108,23 +147,23 @@ const Layout4 = styled.TouchableOpacity`
   padding: 0 16px;
 `;
 
-const Card = () => {
+const Card = ({name, rank1, rank2, rank3, myRank, onClick, myName}) => {
   return (
-    <CardComponentContainer>
+    <CardComponentContainer onPress={onClick}>
       <CardContainer>
         <Typography color="gray700" size={16} weight={600}>
-          최애의 임수민
+          {name}
         </Typography>
         <VStack spacing={8} center justify>
-          <RankAndName rank={1} name="임수민" />
-          <RankAndName rank={2} name="임수민" />
-          <RankAndName rank={3} name="임수민" />
+          <RankAndName rank={1} name={rank1} />
+          <RankAndName rank={2} name={rank2} />
+          <RankAndName rank={3} name={rank3} />
         </VStack>
         <HStack spacing={15} center justify>
           <Typography color="gray700" size={16} weight={600}>
             내 순위
           </Typography>
-          <RankAndName rank={4} name="주현명" />
+          <RankAndName rank={myRank} name={myName} />
         </HStack>
       </CardContainer>
     </CardComponentContainer>
@@ -135,7 +174,7 @@ const RankAndName = ({rank, name}) => {
   return (
     <RankAndNameContainer>
       <RankC rank={rank}>
-        <Typography color="gray100" size={14} weight={500}>
+        <Typography color="gray100" size={12} weight={500}>
           {rank}
         </Typography>
       </RankC>
@@ -181,7 +220,7 @@ const Layout3 = styled.View`
   flex: 1;
 `;
 
-const CardComponentContainer = styled.View`
+const CardComponentContainer = styled.TouchableOpacity`
   flex: 1;
   display: flex;
   flex-direction: column;
