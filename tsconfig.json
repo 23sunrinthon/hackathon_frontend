@@ -1,12 +1,17 @@
 {
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "allowSvg": true,
+    "include": ["src"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@components/*": ["components/*"],
+      "@screens/*": ["screens/*"],
+      "@navigation/*": ["navigation/*"],
+      "@assets/*": ["assets/*"],
+    }
+  },
   "extends": "@tsconfig/react-native/tsconfig.json",
-  "baseUrl": "./src",
-  "paths": {
-    "@/*": ["./*"],
-    "@components/*": ["components/*"],
-    "@screens/*": ["screens/*"],
-    "@navigation/*": ["navigation/*"],
-    "@assets/*": ["assets/*"],
-
-  }
 }
