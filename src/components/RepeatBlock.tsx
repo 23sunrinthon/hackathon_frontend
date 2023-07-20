@@ -2,19 +2,26 @@ import React from 'react';
 import Typography from '@components/Typography';
 import styled from 'styled-components/native';
 import Run from '@assets/icons/run.svg';
+import Join from '@assets/icons/join.svg';
 
-const RepeatBlock = ({title, message, number}) => {
+const RepeatBlock = ({title, message, number, type, icon}) => {
   return (
     <Blocks>
       <Flex>
         <Typography color="gray700" size={16} weight={600}>
           {title}
         </Typography>
-        <Typography color="gray400" size={12} weight={500}>
-          {message}
-        </Typography>
+        {type === 'party' ? (
+          <Typography color="orange500" size={12} weight={500}>
+            총 베팅 금액 {Number(message).toLocaleString()}원
+          </Typography>
+        ) : (
+          <Typography color="gray400" size={12} weight={500}>
+            {message}
+          </Typography>
+        )}
       </Flex>
-      <Run />
+      {type === 'party' ? <Join /> : <Run />}
     </Blocks>
   );
 };

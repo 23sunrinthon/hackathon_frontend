@@ -4,9 +4,11 @@ import styled from 'styled-components/native';
 import Run from '@assets/icons/run.svg';
 import Banner from '@components/Banner';
 import {useFocusEffect} from '@react-navigation/native';
+import RepeatBlock from '@components/RepeatBlock';
 import Typography from '../components/Typography';
+import CTAButton from "@components/CTAButton";
 
-const Settings = () => {
+const Settings = ({navigation}) => {
   const [showBack, setShowBack] = useState(true);
 
   useFocusEffect(
@@ -34,18 +36,47 @@ const Settings = () => {
               }}
             />
           )}
-          <Blocks>
-            <Flex>
-              <Typography color="gray700" size={16} weight={600}>
-                선린인고 친구들
-              </Typography>
-              <Typography color="orange500" size={12} weight={500}>
-                총 베팅금액 50,000원
-              </Typography>
-            </Flex>
-          </Blocks>
+            <Layout
+                onPress={() => {
+                    navigation.navigate('Party');
+                }}>
+                <RepeatBlock
+                    title="선린인고 친구들"
+                    message={500000}
+                    member={5}
+                    number={2}
+                    type="party"
+                />
+            </Layout>
+            <Layout
+                onPress={() => {
+                    navigation.navigate('Party');
+                }}>
+                <RepeatBlock
+                    title="선린인고 친구들"
+                    message={500000}
+                    member={5}
+                    number={2}
+                    type="party"
+                />
+            </Layout>
+            <Layout
+                onPress={() => {
+                    navigation.navigate('Party');
+                }}>
+                <RepeatBlock
+                    title="선린인고 친구들"
+                    message={500000}
+                    member={5}
+                    number={2}
+                    type="party"
+                />
+            </Layout>
         </Parent>
       </View>
+        <BottomButton>
+            <CTAButton onClick={() => navigation.navigate('NewGroup')} text="파티 추가하기" />
+        </BottomButton>
     </SafeAreaView>
   );
 };
@@ -75,17 +106,16 @@ const Flex = styled.View`
   gap: 5px;
 `;
 
-const Blocks = styled.View`
-  background-color: #fafbfc;
-  margin-bottom: 16px;
+const BottomButton = styled.View`
+  position: absolute;
+  padding: 0 16px;
+  bottom: 12px;
   width: 100%;
-  height: 76px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
 `;
+
+const Layout = styled.TouchableOpacity`
+  width: 100%;
+`;
+
 
 export default Settings;
