@@ -85,7 +85,7 @@ const BottomNavigation: React.FC = () => {
                   </ItemContainer>
                 );
               }
-              if (route.name === 'Store') {
+              if (route.name === 'Settings') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
                     <PtSelected height={24} />
@@ -102,7 +102,7 @@ const BottomNavigation: React.FC = () => {
                   </ItemContainer>
                 );
               }
-              if (route.name === 'Settings') {
+              if (route.name === 'Store') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
                     <ShoppingSelected height={24} />
@@ -158,8 +158,9 @@ const BottomNavigation: React.FC = () => {
           <Tab.Screen name="Chat" component={Chat} />
           <Tab.Screen name="Location" component={Location} />
           <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Store" component={Store} />
+
           <Tab.Screen name="Settings" component={Settings} />
+          <Tab.Screen name="Store" component={Store} />
         </Tab.Navigator>
       </SafeAreaProvider>
     </>
