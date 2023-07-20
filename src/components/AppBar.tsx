@@ -9,6 +9,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Typography from './Typography';
 import {HStack} from './Stack';
+import Logo from '../assets/icons/logo.svg';
 
 interface AppBarProps {
   title: string;
@@ -104,6 +105,14 @@ export const AppBarWithSearchBar = ({onClick}) => {
         </SearchContainer>
       </SearchBox>
     </HeaderSpaceBetween>
+  );
+};
+
+export const AppBarDefault = () => {
+  return (
+    <HeaderLeft>
+      <Logo width={70} height={30} />
+    </HeaderLeft>
   );
 };
 

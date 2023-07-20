@@ -6,7 +6,12 @@ import Typography from '../components/Typography';
 import Button from '../components/Button';
 import Switch from '../components/Switch';
 import {HStack, VStack} from '../components/Stack';
-import {AppBarWithBackLeft, AppBarWithTextCenter} from '../components/AppBar';
+import {
+  AppBarDefault,
+  AppBarWithBackLeft,
+  AppBarWithSearchBar,
+  AppBarWithTextCenter,
+} from '../components/AppBar';
 
 const Home = () => {
   const [scrolled, setScrolled] = React.useState(false);
@@ -25,11 +30,7 @@ const Home = () => {
         flex: 1,
         backgroundColor: '#fff',
       }}>
-      <AppBarWithBackLeft
-        title="타이틀"
-        backIcon="arrow-back"
-        firstIcon="settings"
-      />
+      <AppBarDefault />
       <ScrollView
         onScroll={handleScroll}
         showsVerticalScrollIndicator={false}
