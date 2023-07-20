@@ -75,6 +75,7 @@ export const AppBarWithTextCenter = ({title}: AppBarProps) => {
   );
 };
 
+
 export const AppBarWithTextAndLeft = ({text, onClick}) => {
   return (
     <HeaderLeft>
@@ -82,7 +83,7 @@ export const AppBarWithTextAndLeft = ({text, onClick}) => {
         <Icon name="arrow-back" size={18} />
       </TouchableOpacity>
       <Typography color="gray-600" size={18} weight={500}>
-        {text}
+          {text}
       </Typography>
     </HeaderLeft>
   );
