@@ -20,14 +20,6 @@ const Home = ({navigation}) => {
   const [scrolled, setScrolled] = React.useState(false);
   const [showBack, setShowBack] = useState(true);
 
-  const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 0) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  };
-
   useFocusEffect(
     useCallback(() => {
       setShowBack(true);
@@ -41,7 +33,6 @@ const Home = ({navigation}) => {
       }}>
       <AppBarDefault />
       <ScrollView
-        onScroll={handleScroll}
         showsVerticalScrollIndicator={false}
         style={{
           flex: 1,
@@ -57,12 +48,12 @@ const Home = ({navigation}) => {
           )}
         </Layout>
         <Layout2>
-          <Typography color="gray-700" size={16} weight={600}>
+          <Typography color="gray700" size={16} weight={600}>
             오늘의 목표
           </Typography>
         </Layout2>
         <Layout2>
-          <Typography color="gray-700" size={16} weight={600}>
+          <Typography color="gray700" size={16} weight={600}>
             내 파티
           </Typography>
         </Layout2>
@@ -83,7 +74,7 @@ const Home = ({navigation}) => {
           </CardLayout>
         </Layout3>
         <Layout6>
-          <Typography color="gray-700" size={16} weight={600}>
+          <Typography color="gray700" size={16} weight={600}>
             최근 많이 한 운동
           </Typography>
         </Layout6>
