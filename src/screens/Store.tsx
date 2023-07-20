@@ -35,21 +35,16 @@ const Store = ({navigation}) => {
           columnGap: 7,
           alignItems: 'center',
         }}>
-        {category.map(item => {
+        {category.map((item, i) => {
           if (item.selected) {
             return (
               <SelectedChip
                 key={item.id}
                 text={item.name}
                 onClick={() => {
-                  setCategory(
-                    category.map(item => {
-                      if (item.id === 1) {
-                        return {...item, selected: true};
-                      }
-                      return {...item, selected: false};
-                    }),
-                  );
+                  const temp = category;
+                  temp[i].selected = false;
+                  setCategory([...temp]);
                 }}
               />
             );
@@ -59,14 +54,9 @@ const Store = ({navigation}) => {
               key={item.id}
               text={item.name}
               onClick={() => {
-                setCategory(
-                  category.map(item => {
-                    if (item.id === 1) {
-                      return {...item, selected: true};
-                    }
-                    return {...item, selected: false};
-                  }),
-                );
+                const temp = category;
+                temp[i].selected = true;
+                setCategory([...temp]);
               }}
             />
           );
@@ -153,20 +143,6 @@ const LayoutScroll = styled.ScrollView`
   padding: 0 16px;
   flex: 1;
   background-color: #fff;
-`;
-
-const Header = styled(View)`
-  width: 100%;
-  height: 44px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: row;
-  padding: 0 16px;
-  justify-content: flex-start;
-  align-items: center;
-  //border-bottom-width: 1px;
-  gap: 18px;
-  //border-bottom-color: #E5E5E5;
 `;
 
 const Card = () => {

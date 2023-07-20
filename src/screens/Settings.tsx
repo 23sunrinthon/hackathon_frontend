@@ -67,7 +67,7 @@ const Header = styled(View)`
   align-items: center;
   //border-bottom-width: 1px;
   gap: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   //border-bottom-color: #E5E5E5;
 `;
 const Flex = styled.View`

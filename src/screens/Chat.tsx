@@ -70,7 +70,11 @@ const Chat = ({navigation}) => {
         </Layout>
         <BottomBanner />
         <BottomButton>
-          <CTAButton onClick={handleMove} text="운동 추가하기" />
+          <CTAButton
+            onClick={handleMove}
+            text="운동 추가하기"
+            disabled={false}
+          />
         </BottomButton>
       </Parent>
       <View />
@@ -123,7 +127,7 @@ const Header = styled(View)`
   align-items: center;
   //border-bottom-width: 1px;
   gap: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   //border-bottom-color: #E5E5E5;
 `;
 
