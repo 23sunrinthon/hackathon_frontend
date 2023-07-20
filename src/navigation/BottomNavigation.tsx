@@ -1,39 +1,31 @@
-import styled from 'styled-components/native';
-import {StatusBar} from 'react-native';
+import styled, {DefaultTheme, withTheme} from 'styled-components/native';
+import {WithLocalSvg} from 'react-native-svg';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {StatusBar, TouchableOpacity, ImageSourcePropType} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import StoreIcon from '@assets/icons/store.svg';
-import StoreSelected from '@assets/icons/storeselected.svg';
-import ChatIcon from '@assets/icons/chat.svg';
-import ChatSelected from '@assets/icons/chatselected.svg';
+import ExerciseIcon from '@assets/icons/exercise.svg';
+import ExerciseSelected from '@assets/icons/exercise_selected.svg';
+import LocationIcon from '@assets/icons/location.svg';
+import LocationSelected from '@assets/icons/location_selected.svg';
 import HomeIcon from '@assets/icons/home.svg';
-import HomeSelected from '@assets/icons/homeselected.svg';
-import PersonIcon from '@assets/icons/person.svg';
-import PersonSelected from '@assets/icons/personselected.svg';
-import SettingsIcon from '@assets/icons/settings.svg';
-import SettingsSelected from '@assets/icons/settingsselected.svg';
+import HomeSelected from '@assets/icons/home_selected.svg';
+import PtIcon from '@assets/icons/pt.svg';
+import PtSelected from '@assets/icons/pt_selected.svg';
+import ShoppingIcon from '@assets/icons/shopping.svg';
+import ShoppingSelected from '@assets/icons/shopping_selected.svg';
 import Home from '@screens/Home';
-import MyInfo from '@screens/MyInfo';
+import Location from '@screens/Location';
+import Products from '@screens/Products';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {CardStyleInterpolators} from '@react-navigation/stack';
-import Chat from '@screens/Chat';
-import Store from '@screens/Store';
-import React from 'react';
-import Settings from '@screens/Settings';
-import Typography from '@components/Typography';
+import {useRecoilValue} from 'recoil';
+import Chat from '../screens/Chat';
+import Store from '../screens/Store';
+import Settings from '../screens/Settings';
+import Typography from '../components/Typography';
 
 const BottomNavigation: React.FC = () => {
   const Tab = createBottomTabNavigator();
-  const config = {
-    animation: 'spring',
-    config: {
-      stiffness: 1000,
-      damping: 500,
-      mass: 3,
-      overshootClamping: true,
-      restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 0.01,
-    },
-  };
+
   return (
     <>
       <StatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
@@ -41,12 +33,12 @@ const BottomNavigation: React.FC = () => {
         <Tab.Navigator
           initialRouteName="Home"
           screenOptions={({route, navigation}) => ({
-            tabBarIcon: ({focused}) => {
+            tabBarIcon: ({focused, color, size}) => {
               if (route.name === 'Home') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
                     <HomeSelected height={24} />
-                    <Typography size={12} color="red500" weight={600}>
+                    <Typography size={12} color="orange500" weight={600}>
                       홈
                     </Typography>
                   </ItemContainer>
@@ -62,33 +54,33 @@ const BottomNavigation: React.FC = () => {
               if (route.name === 'Chat') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <ChatSelected height={24} />
-                    <Typography size={12} color="red500" weight={600}>
-                      채팅
+                    <ExerciseSelected height={24} />
+                    <Typography size={12} color="orange500" weight={600}>
+                      운동법
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <ChatIcon height={24} />
+                    <ExerciseIcon height={24} />
                     <Typography size={12} color="gray500" weight={500}>
-                      채팅
+                      운동법
                     </Typography>
                   </ItemContainer>
                 );
               }
-              if (route.name === 'MyInfo') {
+              if (route.name === 'Location') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <PersonSelected height={24} />
-                    <Typography size={12} color="red500" weight={600}>
-                      내 정보
+                    <LocationSelected height={24} />
+                    <Typography size={12} color="orange500" weight={600}>
+                      주변 시설
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <PersonIcon height={24} />
+                    <LocationIcon height={24} />
                     <Typography size={12} color="gray500" weight={500}>
-                      내 정보
+                      주변 시설
                     </Typography>
                   </ItemContainer>
                 );
@@ -96,16 +88,16 @@ const BottomNavigation: React.FC = () => {
               if (route.name === 'Store') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <StoreSelected height={24} />
-                    <Typography size={12} color="red500" weight={600}>
-                      상점
+                    <PtSelected height={24} />
+                    <Typography size={12} color="orange500" weight={600}>
+                      PT
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <StoreIcon height={24} />
+                    <PtIcon height={24} />
                     <Typography size={12} color="gray500" weight={500}>
-                      상점
+                      PT
                     </Typography>
                   </ItemContainer>
                 );
@@ -113,16 +105,16 @@ const BottomNavigation: React.FC = () => {
               if (route.name === 'Settings') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <SettingsSelected height={24} />
-                    <Typography size={12} color="red500" weight={600}>
-                      설정
+                    <ShoppingSelected height={24} />
+                    <Typography size={12} color="orange500" weight={600}>
+                      스토어
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <SettingsIcon height={24} />
+                    <ShoppingIcon height={24} />
                     <Typography size={12} color="gray500" weight={500}>
-                      설정
+                      스토어
                     </Typography>
                   </ItemContainer>
                 );
@@ -162,21 +154,10 @@ const BottomNavigation: React.FC = () => {
             labelStyle: {margin: 0, padding: 0},
             tabBarShowLabel: false,
             headerShown: false,
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           })}>
           <Tab.Screen name="Chat" component={Chat} />
-
-          <Tab.Screen name="MyInfo" component={MyInfo} />
-          <Tab.Screen
-            name="Home"
-            component={Home}
-            options={{
-              transitionSpec: {
-                open: config,
-                close: config,
-              },
-            }}
-          />
+          <Tab.Screen name="Location" component={Location} />
+          <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Store" component={Store} />
           <Tab.Screen name="Settings" component={Settings} />
         </Tab.Navigator>

@@ -81,10 +81,10 @@ export const AppBarWithTextAndLeft = () => {
   );
 };
 
-export const AppBarWithSearchBar = () => {
+export const AppBarWithSearchBar = ({onClick}) => {
   return (
     <HeaderSpaceBetween>
-      <IconContainer>
+      <IconContainer onPress={onClick}>
         <Icon
           style={{fontWeight: '300'}}
           name="arrow-back-ios"

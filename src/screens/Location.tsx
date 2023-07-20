@@ -1,19 +1,21 @@
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import styled from 'styled-components/native';
-import {AppBarWithSearchBar} from '@components/AppBar';
+import {AppBarWithTextLeftAndIcon} from '@components/AppBar';
 import Typography from '../components/Typography';
 
-const StoreSearch = ({navigation}) => {
+const Location = ({navigation}) => {
   return (
     <SafeAreaView
       style={{
         flex: 1,
         backgroundColor: '#fff',
       }}>
-      <AppBarWithSearchBar
+      <AppBarWithTextLeftAndIcon
+        title="내 주변 헬스장"
+        firstIcon="search"
         onClick={() => {
-          navigation.goBack();
+          navigation.navigate('LocationSearch');
         }}
       />
       <View />
@@ -21,4 +23,4 @@ const StoreSearch = ({navigation}) => {
   );
 };
 
-export default StoreSearch;
+export default Location;

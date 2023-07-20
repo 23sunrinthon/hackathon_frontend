@@ -15,7 +15,7 @@ const Store = ({navigation}) => {
         backgroundColor: '#fff',
       }}>
       <AppBarWithTextLeftAndIcon
-        title="상점"
+        title="헬스 상점"
         firstIcon="search"
         onClick={() => {
           navigation.navigate('StoreSearch');
