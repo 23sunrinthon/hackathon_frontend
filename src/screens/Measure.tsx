@@ -37,6 +37,7 @@ const Measure = ({navigation}) => {
         flex: 1,
         backgroundColor: '#fff',
       }}>
+<<<<<<< HEAD
       <AppBarWithTextAndLeft text="달리기 운동" />
       <Tp>
         <Typography color="gray700" size={16} weight={500}>
@@ -72,6 +73,35 @@ const Measure = ({navigation}) => {
         <Banner />
       </Parent>
 
+=======
+      <AppBarWithTextAndLeft
+        text="달리기 운동"
+      />
+        <Tp>
+            <Typography color='gray700' size={16} weight={500}>현재 운동 시간</Typography>
+            <Timer>
+                <Typography color="gray700" size={32} weight={600}>
+                    {`${String(timer[0]).padStart(2, '0')}:${String(timer[1]).padStart(2, '0')}:${String(
+                        timer[2]
+                    ).padStart(2, '0')}`}
+                </Typography>
+                <Go width={50}/>
+            </Timer>
+        </Tp>
+        <Aim>
+            <Aim1>
+                <Typography color='gray700' size={16} weight={500}>목표 운동 시간</Typography>
+            </Aim1>
+            <Aim2>
+                <Typography color='gray700' size={16} weight={500}>오늘 운동 시간</Typography>
+            </Aim2>
+        </Aim>
+        <Parent>
+            <Banner/>
+            <Banner/>
+            <Banner/>
+        </Parent>
+>>>>>>> 2b7557f12c9461c37f869533f1abb9273ff13fda
       <BottomButton>
         <CTAButton
           onClick={() => {
@@ -91,6 +121,24 @@ const BottomButton = styled.View`
   bottom: 40px;
   width: 100%;
 `;
+
+const Aim = styled.View`
+    height: 87px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0 60px;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const Aim1 = styled.View`
+    
+`
+
+const Aim2 = styled.View`
+    
+`
 
 const Tp = styled.View`
   margin-top: 100px;
@@ -112,7 +160,6 @@ const Timer = styled.View`
   flex-direction: row;
   justify-content: center;
   height: 60px;
-  margin-top: 100px;
 `;
 
 export default Measure;
