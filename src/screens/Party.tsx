@@ -37,7 +37,7 @@ const Party = ({navigation}) => {
       <BottomButton>
         <CTAButton
           onClick={() => {
-            navigation.navigate('GroupSetting');
+            navigation.navigate('GroupNext');
           }}
           text="그룹 설정"
         />

@@ -53,10 +53,21 @@ const Measure = ({navigation}) => {
         </Tp>
         <Aim>
             <Aim1>
-                <Typography color='gray700' size={16} weight={500}>목표 운동 시간</Typography>
+                <Typography color='gray700' size={16} weight={500}>
+                    목표 운동 시간
+                </Typography>
+                <Typography color='gray700' size={16} weight={500}>
+                    00:00:00
+                </Typography>
+
             </Aim1>
             <Aim2>
-                <Typography color='gray700' size={16} weight={500}>오늘 운동 시간</Typography>
+                <Typography color='gray700' size={16} weight={500}>
+                    총 운동 시간
+                </Typography>
+                <Typography color='gray700' size={16} weight={500}>
+                    00:00:00
+                </Typography>
             </Aim2>
         </Aim>
         <Parent>
@@ -92,14 +103,19 @@ const Aim = styled.View`
   padding: 0 60px;
   align-items: center;
   justify-content: space-between;
+  margin-top: 40px;
 `
 
 const Aim1 = styled.View`
-    
+    display: flex;
+  gap: 6px;
+  align-items: center;
 `
 
 const Aim2 = styled.View`
-    
+  display: flex;
+  gap: 6px;
+  align-items: center;
 `
 
 const Tp = styled.View`

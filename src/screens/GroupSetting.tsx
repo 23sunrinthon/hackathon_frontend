@@ -9,6 +9,8 @@ import {
 import Typography from '../components/Typography';
 import CTAButton from "@components/CTAButton";
 import Banner from "@components/Banner";
+import Checkbox from "@components/Checkbox";
+import {HStack} from "@components/Stack";
 
 const GroupSetting = ({navigation}) => {
 
@@ -23,6 +25,7 @@ const GroupSetting = ({navigation}) => {
                 onClick={() => navigation.goBack()}
             />
             <View>
+                <Banner></Banner>
             </View>
         </SafeAreaView>
     );
