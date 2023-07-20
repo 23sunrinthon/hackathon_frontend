@@ -55,7 +55,7 @@ export const AppBarWithTextLeft = () => {
 export const AppBarWithTextLeftAndIcon = ({title, firstIcon, onClick}) => {
   return (
     <HeaderSpaceBetween>
-      <Typography color="gray-600" size={18} weight={500}>
+      <Typography color="gray600" size={18} weight={500}>
         {title}
       </Typography>
       <TouchableOpacity onPress={onClick}>
@@ -68,13 +68,12 @@ export const AppBarWithTextLeftAndIcon = ({title, firstIcon, onClick}) => {
 export const AppBarWithTextCenter = ({title}: AppBarProps) => {
   return (
     <HeaderCenter>
-      <Typography color="gray-600" size={16} weight={500}>
+      <Typography color="gray600" size={16} weight={500}>
         {title}
       </Typography>
     </HeaderCenter>
   );
 };
-
 
 export const AppBarWithTextAndLeft = ({text, onClick}) => {
   return (
@@ -82,8 +81,8 @@ export const AppBarWithTextAndLeft = ({text, onClick}) => {
       <TouchableOpacity onPress={onClick}>
         <Icon name="arrow-back" size={18} />
       </TouchableOpacity>
-      <Typography color="gray-600" size={18} weight={500}>
-          {text}
+      <Typography color="gray600" size={18} weight={500}>
+        {text}
       </Typography>
     </HeaderLeft>
   );

@@ -35,6 +35,7 @@ function Typography({color, size, weight, children, left}: Props) {
     font-size: ${`${size}px`};
     font-family: ${fontFamily};
     margin-left: ${left ? `${left}px` : '0px'};
+    line-height: ${`${size * 1.5}px`};
   `;
   return <Container>{children}</Container>;
 }
