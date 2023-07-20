@@ -1,16 +1,26 @@
-import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import Typography from "../components/Typography";
-import styled from "styled-components/native";
-import React, {useEffect, useState } from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import styled from 'styled-components/native';
+import React, {useEffect, useState} from 'react';
 import Close from '@assets/icons/close.svg';
 import Run from '@assets/icons/run.svg';
-import RepeatBlock from "../components/RepeatBlock";
-import Button from "@components/Button";
-import CTAButton from "@components/CTAButton";
+import Button from '@components/Button';
+import CTAButton from '@components/CTAButton';
+import {useFocusEffect} from '@react-navigation/native';
+import RepeatBlock from '../components/RepeatBlock';
+import Typography from '../components/Typography';
 
-
-const Chat = () => {
+const Chat = ({navigation}) => {
   const [showBack, setShowBack] = useState(true);
+
+  useEffect(() => {
+    setShowBack(true);
+  }, [navigation.isFocused()]);
 
   const handleClose = () => {
     setShowBack(false);
@@ -21,23 +31,18 @@ const Chat = () => {
   };
 
   const handlePress = (number: Number) => {
-    console.log(number)
+    console.log(number);
   };
 
   // @ts-ignore
   return (
-    <SafeAreaView style={
-      {
+    <SafeAreaView
+      style={{
         flex: 1,
-        backgroundColor: "#fff",
-      }
-    }>
+        backgroundColor: '#fff',
+      }}>
       <Header>
-        <Typography
-          color="gray-600"
-          size={16}
-          weight={600}
-        >
+        <Typography color="gray-600" size={18} weight={500}>
           운동 측정하기
         </Typography>
       </Header>
@@ -53,32 +58,37 @@ const Chat = () => {
             </TouchableOpacity>
           </Back>
         )}
-        <TouchableOpacity onPress={handlePress(1)}>
+        <Layout onPress={handlePress(1)}>
           <RepeatBlock
             title="달리기 운동"
             message="달리기는 체력 향상과 신체 조절에 탁월한 운동입니다."
             number={1}
           />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handlePress(2)}>
+        </Layout>
+        <Layout onPress={handlePress(2)}>
           <RepeatBlock
             title="필라테스"
             message="필라테스는 근력과 유연성을 개선하는 운동입니다."
             number={2}
           />
-        </TouchableOpacity>
+        </Layout>
         <BottomButton>
-          <CTAButton onClick={handleMove} text="운동 추가하기"/>
+          <CTAButton onClick={handleMove} text="운동 추가하기" />
         </BottomButton>
       </Parent>
-      <View/>
+      <View />
     </SafeAreaView>
   );
 };
 
+const Layout = styled.TouchableOpacity`
+  width: 100%;
+`;
+
 const Parent = styled.View`
   width: 100%;
   height: 100%;
+  padding: 0 16px;
   display: flex;
   align-items: center;
 `;
@@ -89,7 +99,7 @@ const Back = styled.View`
   align-items: center;
   justify-content: space-between;
   background-color: #ff6c19;
-  width: 358px;
+  width: 100%;
   padding: 0 16px;
   height: 46px;
   border-radius: 3px;
@@ -99,6 +109,7 @@ const Back = styled.View`
 const BottomButton = styled.View`
   position: absolute;
   bottom: 76px;
+  width: 100%;
 `;
 
 const Header = styled(View)`

@@ -18,7 +18,7 @@ const Login = ({navigation}) => {
   useEffect(() => {
     AsyncStorage.getItem('refresh').then(token => {
       if (token) {
-        navigation.navigate('Main');
+        navigation.navigate('Tab');
       }
     });
   }, [navigation]);

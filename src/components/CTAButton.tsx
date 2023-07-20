@@ -14,7 +14,7 @@ const CTAButton = ({text, onClick, disabled}) => {
 
 const Container = styled.TouchableOpacity<{disabled?: boolean}>`
   padding: 0 16px;
-  width: 358px;
+  width: 100%;
   border-radius: 3px;
   background: ${props => (props.disabled ? '#D7D8DA' : '#ff6c19')};
   color: white;
