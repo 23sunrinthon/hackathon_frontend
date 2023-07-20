@@ -3,9 +3,14 @@ import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import StoreSearch from '@components/StoreSearch';
 import Register from '@screens/Register';
-import Measure from "@screens/Measure";
+import Measure from '@screens/Measure';
+import NewGroup from '@screens/NewGroup';
+import GroupNext from '@screens/GroupNext';
+import DetailLocation from '@screens/DetailLocation';
 import BottomNavigation from './BottomNavigation';
 import Login from '../screens/Login';
+import Party from '../screens/Party';
+import GroupSetting from '../screens/GroupSetting';
 
 const Stack = createStackNavigator();
 
@@ -31,8 +36,13 @@ const RootNavigator: React.FC = () => {
       }}>
       <Stack.Screen name="Tab" component={BottomNavigation} />
       <Stack.Screen name="Measure" component={Measure} />
+      <Stack.Screen name="Party" component={Party} />
+      <Stack.Screen name="GroupSetting" component={GroupSetting} />
+      <Stack.Screen name="NewGroup" component={NewGroup} />
       <Stack.Screen name="StoreSearch" component={StoreSearch} />
       <Stack.Screen name="Auth" component={Auth} />
+      <Stack.Screen name="GroupNext" component={GroupNext} />
+      <Stack.Screen name="LocationDetail" component={DetailLocation} />
     </Stack.Navigator>
   );
 };
