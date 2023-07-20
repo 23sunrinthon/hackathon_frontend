@@ -1,7 +1,8 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import styled from 'styled-components/native';
 import {AppBarWithTextLeftAndIcon} from '@components/AppBar';
+import LocationCard from '@components/LocationCard';
 import Typography from '../components/Typography';
 
 const Location = ({navigation}) => {
@@ -18,9 +19,36 @@ const Location = ({navigation}) => {
           navigation.navigate('LocationSearch');
         }}
       />
-      <View />
+      <ScrollView style={{flex: 1}}>
+        <Layout
+          onPress={() => {
+            navigation.navigate('LocationDetail');
+          }}>
+          <LocationCard />
+        </Layout>
+        <Layout>
+          <LocationCard />
+        </Layout>
+        <Layout>
+          <LocationCard />
+        </Layout>
+        <Layout>
+          <LocationCard />
+        </Layout>
+        <Layout>
+          <LocationCard />
+        </Layout>
+        <Layout>
+          <LocationCard />
+        </Layout>
+      </ScrollView>
     </SafeAreaView>
   );
 };
+
+const Layout = styled.TouchableOpacity`
+  width: 100%;
+  padding: 0 16px;
+`;
 
 export default Location;

@@ -52,7 +52,6 @@ const Back = styled.View`
   height: 46px;
   border-radius: 3px;
   margin-bottom: 8px;
-  margin-top: 4px;
 `;
 
 export default Banner;

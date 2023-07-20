@@ -5,8 +5,8 @@ import Run from '@assets/icons/run.svg';
 import Banner from '@components/Banner';
 import {useFocusEffect} from '@react-navigation/native';
 import RepeatBlock from '@components/RepeatBlock';
+import CTAButton from '@components/CTAButton';
 import Typography from '../components/Typography';
-import CTAButton from "@components/CTAButton";
 
 const Settings = ({navigation}) => {
   const [showBack, setShowBack] = useState(true);
@@ -36,47 +36,51 @@ const Settings = ({navigation}) => {
               }}
             />
           )}
-            <Layout
-                onPress={() => {
-                    navigation.navigate('Party');
-                }}>
-                <RepeatBlock
-                    title="선린인고 친구들"
-                    message={500000}
-                    member={5}
-                    number={2}
-                    type="party"
-                />
-            </Layout>
-            <Layout
-                onPress={() => {
-                    navigation.navigate('Party');
-                }}>
-                <RepeatBlock
-                    title="선린인고 친구들"
-                    message={500000}
-                    member={5}
-                    number={2}
-                    type="party"
-                />
-            </Layout>
-            <Layout
-                onPress={() => {
-                    navigation.navigate('Party');
-                }}>
-                <RepeatBlock
-                    title="선린인고 친구들"
-                    message={500000}
-                    member={5}
-                    number={2}
-                    type="party"
-                />
-            </Layout>
+          <Layout
+            onPress={() => {
+              navigation.navigate('Party');
+            }}>
+            <RepeatBlock
+              title="선린인고 친구들"
+              message={500000}
+              member={5}
+              number={2}
+              type="party"
+            />
+          </Layout>
+          <Layout
+            onPress={() => {
+              navigation.navigate('Party');
+            }}>
+            <RepeatBlock
+              title="선린인고 친구들"
+              message={500000}
+              member={5}
+              number={2}
+              type="party"
+            />
+          </Layout>
+          <Layout
+            onPress={() => {
+              navigation.navigate('Party');
+            }}>
+            <RepeatBlock
+              title="선린인고 친구들"
+              message={500000}
+              member={5}
+              number={2}
+              type="party"
+            />
+          </Layout>
         </Parent>
       </View>
-        <BottomButton>
-            <CTAButton onClick={() => navigation.navigate('NewGroup')} text="파티 추가하기" />
-        </BottomButton>
+      <BottomButton>
+        <CTAButton
+          onClick={() => navigation.navigate('NewGroup')}
+          text="파티 추가하기"
+          disabled={false}
+        />
+      </BottomButton>
     </SafeAreaView>
   );
 };
@@ -98,7 +102,7 @@ const Header = styled(View)`
   align-items: center;
   //border-bottom-width: 1px;
   gap: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   //border-bottom-color: #E5E5E5;
 `;
 const Flex = styled.View`
@@ -116,6 +120,5 @@ const BottomButton = styled.View`
 const Layout = styled.TouchableOpacity`
   width: 100%;
 `;
-
 
 export default Settings;
