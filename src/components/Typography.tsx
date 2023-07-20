@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { colors } from "../values/color";
+import {colors} from '../values/color';
+
 interface Props {
-  color?: string;
+  color: string;
   size: number;
   weight: number;
   children: React.ReactNode;
 }
 
-const Typography = (props: Props) => {
+function Typography({color, size, weight, children}: Props) {
   let fontFamily = 'SUIT-Medium';
-  switch (props.weight) {
+  switch (weight) {
     case 400:
       fontFamily = 'SUIT-Regular';
       break;
@@ -29,13 +30,13 @@ const Typography = (props: Props) => {
   }
 
   const Container = styled.Text`
-    color: ${colors[props.color || 'gray600']};
-    font-size: ${props.size + 'px'};
+    color: ${colors[color || 'gray600']};
+    font-size: ${`${size}px`};
     font-family: ${fontFamily};
     letter-spacing: -0.0255rem;
     line-height: normal;
   `;
-  return <Container>{props.children}</Container>;
-};
+  return <Container>{children}</Container>;
+}
 
 export default Typography;

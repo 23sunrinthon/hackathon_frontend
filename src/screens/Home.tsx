@@ -4,6 +4,8 @@ import styled from "styled-components/native";
 import Typography from "../components/Typography";
 import Button from "../components/Button";
 import Switch from "../components/Switch";
+import { HStack,VStack } from "../components/Stack";
+import { AppBarWithBackLeft, AppBarWithTextCenter } from "../components/AppBar";
 
 const Home = () => {
 
@@ -24,17 +26,7 @@ const Home = () => {
         backgroundColor: "#fff",
       }
     }>
-      <Header
-        scrolled={scrolled}
-      >
-        <Typography
-          color="gray-600"
-          size={18}
-          weight={600}
-        >
-          홈
-        </Typography>
-      </Header>
+      <AppBarWithBackLeft title={'타이틀'} backIcon={'arrow-back'} firstIcon={'settings'}/>
       <ScrollView
         onScroll={handleScroll}
         showsVerticalScrollIndicator={false}
@@ -81,6 +73,33 @@ const Home = () => {
             enabled={enabled}
             onClick={() => setEnabled(!enabled)}
           />
+          {/*<VStack*/}
+          {/*  spacing={11}*/}
+          {/*  center={true}*/}
+          {/*  justify={true}*/}
+          {/*>*/}
+          {/*  <Typography*/}
+          {/*    color="gray-700"*/}
+          {/*    size={22}*/}
+          {/*    weight={500}*/}
+          {/*  >*/}
+          {/*    통화 준비(1/4)*/}
+          {/*  </Typography>*/}
+          {/*  <Typography*/}
+          {/*    color="gray-700"*/}
+          {/*    size={22}*/}
+          {/*    weight={500}*/}
+          {/*  >*/}
+          {/*    통화 준비(1/4)*/}
+          {/*  </Typography>*/}
+          {/*  <Typography*/}
+          {/*    color="gray-700"*/}
+          {/*    size={22}*/}
+          {/*    weight={500}*/}
+          {/*  >*/}
+          {/*    통화 준비(1/4)*/}
+          {/*  </Typography>*/}
+          {/*</VStack>*/}
         </View>
       </ScrollView>
     </SafeAreaView>

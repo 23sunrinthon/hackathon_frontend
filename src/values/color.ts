@@ -1,4 +1,8 @@
-export const colors = {
+interface IColor {
+  [key: string]: string;
+}
+
+export const colors: IColor = {
   blue50: '#F4FAFF',
   blue100: '#E1F2FF',
   blue200: '#B8E1FF',
