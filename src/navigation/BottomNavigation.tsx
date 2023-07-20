@@ -3,16 +3,16 @@ import { WithLocalSvg } from 'react-native-svg'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { StatusBar, TouchableOpacity } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import StoreIcon from '@assets/icons/store.svg'
-import StoreSelected from '@assets/icons/storeselected.svg'
-import ChatIcon from '@assets/icons/chat.svg'
-import ChatSelected from '@assets/icons/chatselected.svg'
+import ExerciseIcon from '@assets/icons/exercise.svg'
+import ExerciseSelected from '@assets/icons/exercise_selected.svg'
+import LocationIcon from '@assets/icons/location.svg'
+import LocationSelected from '@assets/icons/location_selected.svg'
 import HomeIcon from '@assets/icons/home.svg'
-import HomeSelected from '@assets/icons/homeselected.svg'
-import PersonIcon from '@assets/icons/person.svg'
-import PersonSelected from '@assets/icons/personselected.svg'
-import SettingsIcon from '@assets/icons/settings.svg'
-import SettingsSelected from '@assets/icons/settingsselected.svg'
+import HomeSelected from '@assets/icons/home_selected.svg'
+import PtIcon from '@assets/icons/pt.svg'
+import PtSelected from '@assets/icons/pt_selected.svg'
+import ShoppingIcon from '@assets/icons/shopping.svg'
+import ShoppingSelected from '@assets/icons/shopping_selected.svg'
 import Home from '@screens/Home'
 import MyInfo from '@screens/MyInfo'
 import Products from '@screens/Products'
@@ -40,7 +40,7 @@ const BottomNavigation: React.FC = () => {
                     <HomeSelected height={24} />
                     <Typography
                       size={12}
-                      color="red500"
+                      color="orange500"
                       weight={600}
                     >
                       홈
@@ -62,24 +62,24 @@ const BottomNavigation: React.FC = () => {
               if (route.name === 'Chat') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <ChatSelected height={24}/>
+                    <ExerciseSelected height={24}/>
                     <Typography
                       size={12}
-                      color="red500"
+                      color="orange500"
                       weight={600}
                     >
-                      채팅
+                      운동법
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <ChatIcon height={24}  />
+                    <ExerciseIcon height={24}  />
                     <Typography
                       size={12}
                       color="gray500"
                       weight={500}
                     >
-                      채팅
+                      운동법
                     </Typography>
                   </ItemContainer>
                 )
@@ -87,24 +87,24 @@ const BottomNavigation: React.FC = () => {
               if (route.name === 'MyInfo') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <PersonSelected height={24}/>
+                    <LocationSelected height={24}/>
                     <Typography
                       size={12}
-                      color="red500"
+                      color="orange500"
                       weight={600}
                     >
-                      내 정보
+                      주변 시설
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <PersonIcon height={24}/>
+                    <LocationIcon height={24}/>
                     <Typography
                       size={12}
                       color="gray500"
                       weight={500}
                     >
-                      내 정보
+                        주변 시설
                     </Typography>
                   </ItemContainer>
                 )
@@ -112,24 +112,24 @@ const BottomNavigation: React.FC = () => {
               if (route.name === 'Store') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <StoreSelected height={24}/>
+                    <PtSelected height={24}/>
                     <Typography
                       size={12}
-                      color="red500"
+                      color="orange500"
                       weight={600}
                     >
-                      상점
+                      PT
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <StoreIcon height={24}/>
+                    <PtIcon height={24}/>
                     <Typography
                       size={12}
                       color="gray500"
                       weight={500}
                     >
-                      상점
+                        PT
                     </Typography>
                   </ItemContainer>
                 )
@@ -137,24 +137,24 @@ const BottomNavigation: React.FC = () => {
               if (route.name === 'Settings') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <SettingsSelected height={24}/>
+                    <ShoppingSelected height={24}/>
                     <Typography
                       size={12}
-                      color="red500"
+                      color="orange500"
                       weight={600}
                     >
-                      설정
+                      스토어
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <SettingsIcon height={24}/>
+                    <ShoppingIcon height={24}/>
                     <Typography
                       size={12}
                       color="gray500"
                       weight={500}
                     >
-                      설정
+                        스토어
                     </Typography>
                   </ItemContainer>
                 )
@@ -196,7 +196,6 @@ const BottomNavigation: React.FC = () => {
             headerShown: false,
           })}>
           <Tab.Screen name="Chat" component={Chat} />
-
           <Tab.Screen name="MyInfo" component={MyInfo} />
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Store" component={Store} />
