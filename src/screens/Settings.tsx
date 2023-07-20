@@ -1,18 +1,25 @@
-import React from "react";
-import { SafeAreaView, Text, View } from "react-native";
-import styled from "styled-components/native";
-import Typography from "../components/Typography";
-import Run from "@assets/icons/run.svg";
-import Banner from "@components/Banner";
+import React, {useCallback, useState} from 'react';
+import {SafeAreaView, Text, View} from 'react-native';
+import styled from 'styled-components/native';
+import Run from '@assets/icons/run.svg';
+import Banner from '@components/Banner';
+import {useFocusEffect} from '@react-navigation/native';
+import Typography from '../components/Typography';
 
 const Settings = () => {
+  const [showBack, setShowBack] = useState(true);
+
+  useFocusEffect(
+    useCallback(() => {
+      setShowBack(true);
+    }, []),
+  ); // 컴포넌트가 처음 렌더링될 때 랜덤한 메시지 보여주
   return (
-    <SafeAreaView style={
-      {
+    <SafeAreaView
+      style={{
         flex: 1,
-        backgroundColor: "#fff",
-      }
-    }>
+        backgroundColor: '#fff',
+      }}>
       <Header>
         <Typography color="gray-600" size={18} weight={500}>
           함께하는 파티원
@@ -20,17 +27,23 @@ const Settings = () => {
       </Header>
       <View>
         <Parent>
-          <Banner/>
-            <Blocks>
-              <Flex>
-                <Typography color="gray700" size={16} weight={600}>
-                  선린인고 친구들
-                </Typography>
-                <Typography color="orange500" size={12} weight={500}>
-                  총 베팅금액 50,000원
-                </Typography>
-              </Flex>
-            </Blocks>
+          {showBack && (
+            <Banner
+              onClick={() => {
+                setShowBack(false);
+              }}
+            />
+          )}
+          <Blocks>
+            <Flex>
+              <Typography color="gray700" size={16} weight={600}>
+                선린인고 친구들
+              </Typography>
+              <Typography color="orange500" size={12} weight={500}>
+                총 베팅금액 50,000원
+              </Typography>
+            </Flex>
+          </Blocks>
         </Parent>
       </View>
     </SafeAreaView>
@@ -41,7 +54,7 @@ const Parent = styled.View`
   display: flex;
   width: 100%;
   padding: 0 16px;
-`
+`;
 
 const Header = styled(View)`
   width: 100%;
@@ -75,6 +88,4 @@ const Blocks = styled.View`
   padding-right: 20px;
 `;
 
-
 export default Settings;
-

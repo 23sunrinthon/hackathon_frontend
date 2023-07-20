@@ -6,17 +6,24 @@ import {
   View,
 } from 'react-native';
 import styled from 'styled-components/native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Close from '@assets/icons/close.svg';
 import Run from '@assets/icons/run.svg';
 import Button from '@components/Button';
 import CTAButton from '@components/CTAButton';
 import {useFocusEffect} from '@react-navigation/native';
+import Banner from '@components/Banner';
 import RepeatBlock from '../components/RepeatBlock';
 import Typography from '../components/Typography';
-import Banner from "@components/Banner";
 
 const Chat = ({navigation}) => {
+  const [showBack, setShowBack] = useState(true);
+
+  useFocusEffect(
+    useCallback(() => {
+      setShowBack(true);
+    }, []),
+  ); // 컴포넌트가 처음 렌더링될 때 랜덤한 메시지 보여주기
   const handleMove = () => {
     // add function
   };
@@ -29,29 +36,39 @@ const Chat = ({navigation}) => {
         backgroundColor: '#fff',
       }}>
       <Header>
-        <Typography color="gray-600" size={18} weight={500}>
+        <Typography color="gray600" size={18} weight={500}>
           운동 측정하기
         </Typography>
       </Header>
       <Parent>
-         <Banner/>
-        <Layout onPress={() => {navigation.navigate('Measure')}}>
+        {showBack && (
+          <Banner
+            onClick={() => {
+              setShowBack(false);
+            }}
+          />
+        )}
+        <Layout
+          onPress={() => {
+            navigation.navigate('Measure');
+          }}>
           <RepeatBlock
             title="달리기 운동"
             message="달리기는 체력 향상과 신체 조절에 탁월한 운동입니다."
             number={1}
           />
         </Layout>
-        <Layout onPress={() => {navigation.navigate('Measure')}}>
+        <Layout
+          onPress={() => {
+            navigation.navigate('Measure');
+          }}>
           <RepeatBlock
             title="필라테스"
             message="필라테스는 근력과 유연성을 개선하는 운동입니다."
             number={2}
           />
         </Layout>
-        <BottomBanner>
-
-        </BottomBanner>
+        <BottomBanner />
         <BottomButton>
           <CTAButton onClick={handleMove} text="운동 추가하기" />
         </BottomButton>
@@ -60,6 +77,20 @@ const Chat = ({navigation}) => {
     </SafeAreaView>
   );
 };
+
+const Back = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffece1;
+  width: 100%;
+  padding: 0 16px;
+  height: 46px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  margin-top: 4px;
+`;
 
 const Layout = styled.TouchableOpacity`
   width: 100%;
@@ -73,9 +104,7 @@ const Parent = styled.View`
   align-items: center;
 `;
 
-const BottomBanner = styled.View`
-
-`
+const BottomBanner = styled.View``;
 
 const BottomButton = styled.View`
   position: absolute;
