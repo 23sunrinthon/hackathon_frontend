@@ -1,12 +1,20 @@
 import axios from 'axios';
-import {API_URL} from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const client = axios.create({
-  baseURL: API_URL,
+const client = axios.create({
+  baseURL: process.env.API_URL,
 });
+client.interceptors.request.use(
+  async config => {
+    const token = await AsyncStorage.getItem('access');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
 
-export const defaultClient = axios.create({
-  baseURL: API_URL,
-});
-
-
+export default client;

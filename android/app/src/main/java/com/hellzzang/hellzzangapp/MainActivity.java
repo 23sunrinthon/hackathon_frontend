@@ -1,4 +1,4 @@
-package com.hackathon_reactnative_template;
+package com.hellzzang.hellzzangapp;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

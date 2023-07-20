@@ -29,7 +29,7 @@ const Login = ({navigation}) => {
     } else {
       login({id, password})
         .then(res => {
-          navigation.navigate('Tab');
+          navigation.navigate('Main');
         })
         .catch(error => {
           setError('아이디와 비밀번호를 확인해주세요.');
@@ -91,7 +91,9 @@ const Login = ({navigation}) => {
             <Layout>
               <CTAButton
                 text="로그인"
-                onClick={handleLogin}
+                onClick={async () => {
+                  await handleLogin();
+                }}
                 disabled={id === '' || password === ''}
               />
             </Layout>

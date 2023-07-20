@@ -1,4 +1,4 @@
-package com.hackathon_reactnative_template;
+package com.hellzzang.hellzzangapp;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.hackathon_reactnative_template"
+    namespace "com.hellzzang.hellzzangapp"
     defaultConfig {
-        applicationId "com.hackathon_reactnative_template"
+        applicationId "com.hellzzang.hellzzangapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

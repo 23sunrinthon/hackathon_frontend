@@ -7,9 +7,10 @@ interface Props {
   size: number;
   weight: number;
   children: React.ReactNode;
+  left?: number;
 }
 
-function Typography({color, size, weight, children}: Props) {
+function Typography({color, size, weight, children, left}: Props) {
   let fontFamily = 'SUIT-Medium';
   switch (weight) {
     case 400:
@@ -33,8 +34,7 @@ function Typography({color, size, weight, children}: Props) {
     color: ${colors[color || 'gray600']};
     font-size: ${`${size}px`};
     font-family: ${fontFamily};
-    letter-spacing: -0.0255rem;
-    line-height: normal;
+    margin-left: ${left ? `${left}px` : '0px'};
   `;
   return <Container>{children}</Container>;
 }

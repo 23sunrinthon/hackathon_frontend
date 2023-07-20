@@ -1,14 +1,14 @@
-import React from "react";
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
-import styled from "styled-components/native";
-import Typography from "../components/Typography";
-import Button from "../components/Button";
-import Switch from "../components/Switch";
-import { HStack,VStack } from "../components/Stack";
-import { AppBarWithBackLeft, AppBarWithTextCenter } from "../components/AppBar";
+import React from 'react';
+import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import styled from 'styled-components/native';
+import Checkbox from '@components/Checkbox';
+import Typography from '../components/Typography';
+import Button from '../components/Button';
+import Switch from '../components/Switch';
+import {HStack, VStack} from '../components/Stack';
+import {AppBarWithBackLeft, AppBarWithTextCenter} from '../components/AppBar';
 
 const Home = () => {
-
   const [scrolled, setScrolled] = React.useState(false);
   const [enabled, setEnabled] = React.useState(false);
 
@@ -18,37 +18,36 @@ const Home = () => {
     } else {
       setScrolled(false);
     }
-  }
+  };
   return (
-    <SafeAreaView style={
-      {
+    <SafeAreaView
+      style={{
         flex: 1,
-        backgroundColor: "#fff",
-      }
-    }>
-      <AppBarWithBackLeft title={'타이틀'} backIcon={'arrow-back'} firstIcon={'settings'}/>
+        backgroundColor: '#fff',
+      }}>
+      <AppBarWithBackLeft
+        title="타이틀"
+        backIcon="arrow-back"
+        firstIcon="settings"
+      />
       <ScrollView
         onScroll={handleScroll}
         showsVerticalScrollIndicator={false}
-        style={
-          {
-            flex: 1,
-            backgroundColor: "#fff",
-          }
-        }
-      >
-        <View style={
-          {
-            width: "100%",
+        style={{
+          flex: 1,
+          backgroundColor: '#fff',
+        }}>
+        <View
+          style={{
+            width: '100%',
             height: 1000,
-            backgroundColor: "#fff",
-          }
-        }>
+            backgroundColor: '#fff',
+          }}>
           <Button
             type="primary"
             size="large"
             text="버튼"
-            icon={"arrow-left"}
+            icon="arrow-left"
             onClick={() => {}}
           />
           <Button
@@ -57,56 +56,42 @@ const Home = () => {
             text="버튼"
             onClick={() => {}}
           />
-          <Button
-            type="tertiary"
-            size="large"
-            text="버튼"
-            onClick={() => {}}
-          />
-          <Button
-            type="outlined"
-            size="large"
-            text="버튼"
-            onClick={() => {}}
-          />
-          <Switch
-            enabled={enabled}
-            onClick={() => setEnabled(!enabled)}
-          />
-          {/*<VStack*/}
-          {/*  spacing={11}*/}
-          {/*  center={true}*/}
-          {/*  justify={true}*/}
-          {/*>*/}
-          {/*  <Typography*/}
-          {/*    color="gray-700"*/}
-          {/*    size={22}*/}
-          {/*    weight={500}*/}
-          {/*  >*/}
-          {/*    통화 준비(1/4)*/}
-          {/*  </Typography>*/}
-          {/*  <Typography*/}
-          {/*    color="gray-700"*/}
-          {/*    size={22}*/}
-          {/*    weight={500}*/}
-          {/*  >*/}
-          {/*    통화 준비(1/4)*/}
-          {/*  </Typography>*/}
-          {/*  <Typography*/}
-          {/*    color="gray-700"*/}
-          {/*    size={22}*/}
-          {/*    weight={500}*/}
-          {/*  >*/}
-          {/*    통화 준비(1/4)*/}
-          {/*  </Typography>*/}
-          {/*</VStack>*/}
+          <Button type="tertiary" size="large" text="버튼" onClick={() => {}} />
+          <Button type="outlined" size="large" text="버튼" onClick={() => {}} />
+          <Switch enabled={enabled} onClick={() => setEnabled(!enabled)} />
+          <Checkbox enabled={enabled} onClick={() => setEnabled(!enabled)} />
+          {/* <VStack */}
+          {/*  spacing={11} */}
+          {/*  center={true} */}
+          {/*  justify={true} */}
+          {/* > */}
+          {/*  <Typography */}
+          {/*    color="gray-700" */}
+          {/*    size={22} */}
+          {/*    weight={500} */}
+          {/*  > */}
+          {/*    통화 준비(1/4) */}
+          {/*  </Typography> */}
+          {/*  <Typography */}
+          {/*    color="gray-700" */}
+          {/*    size={22} */}
+          {/*    weight={500} */}
+          {/*  > */}
+          {/*    통화 준비(1/4) */}
+          {/*  </Typography> */}
+          {/*  <Typography */}
+          {/*    color="gray-700" */}
+          {/*    size={22} */}
+          {/*    weight={500} */}
+          {/*  > */}
+          {/*    통화 준비(1/4) */}
+          {/*  </Typography> */}
+          {/* </VStack> */}
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
-
-
 
 const Header = styled(View)`
   width: 100%;
@@ -120,9 +105,8 @@ const Header = styled(View)`
   //border-bottom-width: 1px;
   gap: 18px;
   //border-bottom-color: #E5E5E5;
-  border-bottom-width:${props => props.scrolled ? "1px" : "0px"};
-  border-color: #F1F2F3;
+  border-bottom-width: ${props => (props.scrolled ? '1px' : '0px')};
+  border-color: #f1f2f3;
 `;
-
 
 export default Home;
