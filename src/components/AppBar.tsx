@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
-import {View} from 'react-native';
-import Typography from './Typography';
+import {TouchableHighlight, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Typography from './Typography';
 import {HStack} from './Stack';
 
 interface AppBarProps {
@@ -27,24 +27,36 @@ export const AppBarWithBackLeft = ({
         </Typography>
       </HStack>
       <HStack spacing={18}>
-        <Icon name={firstIcon} size={20}/>
+        <Icon name={firstIcon} size={20} />
         <Icon name={secondIcon} />
       </HStack>
     </HeaderSpaceBetween>
-
   );
 };
 
 export const AppBarWithTextLeft = () => {
   return (
     <HeaderSpaceBetween>
-      <Icon icon={"arrow-back"} />
+      <Icon icon="arrow-back" />
       <Typography color="gray-600" size={18} weight={500}>
         홈
       </Typography>
-      <View></View>
+      <View />
     </HeaderSpaceBetween>
-  )
+  );
+};
+
+export const AppBarWithTextLeftAndIcon = ({title, firstIcon, onClick}) => {
+  return (
+    <HeaderSpaceBetween>
+      <Typography color="gray-600" size={18} weight={500}>
+        {title}
+      </Typography>
+      <TouchableOpacity onPress={onClick}>
+        <Icon name={firstIcon} size={20} />
+      </TouchableOpacity>
+    </HeaderSpaceBetween>
+  );
 };
 
 export const AppBarWithTextCenter = ({title}: AppBarProps) => {
@@ -60,23 +72,25 @@ export const AppBarWithTextCenter = ({title}: AppBarProps) => {
 export const AppBarWithTextAndLeft = () => {
   return (
     <HeaderSpaceBetween>
-      <Icon icon={"arrow-back"} />
+      <Icon icon="arrow-back" size={18} />
       <Typography color="gray-600" size={18} weight={500}>
         홈
       </Typography>
-      <View></View>
+      <View />
     </HeaderSpaceBetween>
-  )
+  );
+};
 
-}
-
-export const AppBarWithSearchBar = () => {
+export const AppBarWithSearchBar = ({onClick}) => {
   return (
     <HeaderSpaceBetween>
-      <IconContainer>
+      <IconContainer onPress={onClick}>
         <Icon
           style={{fontWeight: '300'}}
-          name={'arrow-back-ios'} size={16} color="#000" />
+          name="arrow-back-ios"
+          size={16}
+          color="#000"
+        />
       </IconContainer>
       <SearchBox>
         <SearchContainer>
@@ -84,9 +98,8 @@ export const AppBarWithSearchBar = () => {
         </SearchContainer>
       </SearchBox>
     </HeaderSpaceBetween>
-  )
-}
-
+  );
+};
 
 const HeaderSpaceBetween = styled(View)`
   width: 100%;
@@ -100,8 +113,8 @@ const HeaderSpaceBetween = styled(View)`
   //border-bottom-width: 1px;
   gap: 18px;
   //border-bottom-color: #E5E5E5;
-  border-bottom-width:${props => props.scrolled ? "1px" : "0px"};
-  border-color: #F1F2F3;
+  border-bottom-width: ${props => (props.scrolled ? '1px' : '0px')};
+  border-color: #f1f2f3;
 `;
 const HeaderCenter = styled(View)`
   width: 100%;
@@ -115,8 +128,8 @@ const HeaderCenter = styled(View)`
   //border-bottom-width: 1px;
   gap: 18px;
   //border-bottom-color: #E5E5E5;
-  border-bottom-width:${props => props.scrolled ? "1px" : "0px"};
-  border-color: #F1F2F3;
+  border-bottom-width: ${props => (props.scrolled ? '1px' : '0px')};
+  border-color: #f1f2f3;
 `;
 
 const IconContainer = styled.Pressable`
@@ -156,5 +169,3 @@ const SearchContainer = styled.View`
   padding: 0 12px;
   border-radius: 6px;
 `;
-
-

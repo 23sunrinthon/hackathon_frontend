@@ -13,6 +13,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 // import messaging from "@react-native-firebase/messaging";
 import BottomNavigation from "./BottomNavigation";
 import Login from "../screens/Login"
+import StoreSearch from '@components/StoreSearch';
+import BottomNavigation from './BottomNavigation';
 
 const Stack = createStackNavigator();
 
@@ -68,10 +70,16 @@ const RootNavigator: React.FC = () => {
       {/*<Stack.Screen name="Reservation" component={Reservation} />*/}
       {/*<Stack.Screen name="ReservationResult" component={ReservationResult} />*/}
       <Stack.Screen name="Tab" component={Auth} />
+      {/* <Stack.Screen name="Main" component={Main} /> */}
+      {/* <Stack.Screen name="Search" component={Search} /> */}
+      {/* <Stack.Screen name="Auth" component={Auth} /> */}
+      {/* <Stack.Screen name="Shop" component={Shop} /> */}
+      {/* <Stack.Screen name="Reservation" component={Reservation} /> */}
+      {/* <Stack.Screen name="ReservationResult" component={ReservationResult} /> */}
+      <Stack.Screen name="Tab" component={BottomNavigation} />
+      <Stack.Screen name="StoreSearch" component={StoreSearch} />
     </Stack.Navigator>
   );
 };
 
-
 export default RootNavigator;
-

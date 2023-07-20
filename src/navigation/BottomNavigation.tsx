@@ -1,30 +1,30 @@
-import styled, { DefaultTheme, withTheme } from 'styled-components/native'
-import { WithLocalSvg } from 'react-native-svg'
-import { useNavigation, useRoute } from '@react-navigation/native'
-import { StatusBar, TouchableOpacity } from 'react-native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import ExerciseIcon from '@assets/icons/exercise.svg'
-import ExerciseSelected from '@assets/icons/exercise_selected.svg'
-import LocationIcon from '@assets/icons/location.svg'
-import LocationSelected from '@assets/icons/location_selected.svg'
-import HomeIcon from '@assets/icons/home.svg'
-import HomeSelected from '@assets/icons/home_selected.svg'
-import PtIcon from '@assets/icons/pt.svg'
-import PtSelected from '@assets/icons/pt_selected.svg'
-import ShoppingIcon from '@assets/icons/shopping.svg'
-import ShoppingSelected from '@assets/icons/shopping_selected.svg'
-import Home from '@screens/Home'
-import MyInfo from '@screens/MyInfo'
-import Products from '@screens/Products'
-import { ImageSourcePropType } from 'react-native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { useRecoilValue } from 'recoil'
-import Chat from "../screens/Chat";
-import Store from "../screens/Store";
-import Settings from "../screens/Settings";
-import Typography from "../components/Typography";
+import styled, {DefaultTheme, withTheme} from 'styled-components/native';
+import {WithLocalSvg} from 'react-native-svg';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {StatusBar, TouchableOpacity, ImageSourcePropType} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import ExerciseIcon from '@assets/icons/exercise.svg';
+import ExerciseSelected from '@assets/icons/exercise_selected.svg';
+import LocationIcon from '@assets/icons/location.svg';
+import LocationSelected from '@assets/icons/location_selected.svg';
+import HomeIcon from '@assets/icons/home.svg';
+import HomeSelected from '@assets/icons/home_selected.svg';
+import PtIcon from '@assets/icons/pt.svg';
+import PtSelected from '@assets/icons/pt_selected.svg';
+import ShoppingIcon from '@assets/icons/shopping.svg';
+import ShoppingSelected from '@assets/icons/shopping_selected.svg';
+import Home from '@screens/Home';
+import Location from '@screens/Location';
+import Products from '@screens/Products';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {useRecoilValue} from 'recoil';
+import Chat from '../screens/Chat';
+import Store from '../screens/Store';
+import Settings from '../screens/Settings';
+import Typography from '../components/Typography';
+
 const BottomNavigation: React.FC = () => {
-  const Tab = createBottomTabNavigator()
+  const Tab = createBottomTabNavigator();
 
   return (
     <>
@@ -32,140 +32,100 @@ const BottomNavigation: React.FC = () => {
       <SafeAreaProvider>
         <Tab.Navigator
           initialRouteName="Home"
-          screenOptions={({ route,navigation }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
+          screenOptions={({route, navigation}) => ({
+            tabBarIcon: ({focused, color, size}) => {
               if (route.name === 'Home') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
                     <HomeSelected height={24} />
-                    <Typography
-                      size={12}
-                      color="orange500"
-                      weight={600}
-                    >
+                    <Typography size={12} color="orange500" weight={600}>
                       홈
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
                     <HomeIcon height={24} />
-                    <Typography
-                      size={12}
-                      color="gray500"
-                      weight={500}
-                    >
+                    <Typography size={12} color="gray500" weight={500}>
                       홈
                     </Typography>
                   </ItemContainer>
-                )
+                );
               }
               if (route.name === 'Chat') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <ExerciseSelected height={24}/>
-                    <Typography
-                      size={12}
-                      color="orange500"
-                      weight={600}
-                    >
+                    <ExerciseSelected height={24} />
+                    <Typography size={12} color="orange500" weight={600}>
                       운동법
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <ExerciseIcon height={24}  />
-                    <Typography
-                      size={12}
-                      color="gray500"
-                      weight={500}
-                    >
+                    <ExerciseIcon height={24} />
+                    <Typography size={12} color="gray500" weight={500}>
                       운동법
                     </Typography>
                   </ItemContainer>
-                )
+                );
               }
-              if (route.name === 'MyInfo') {
+              if (route.name === 'Location') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <LocationSelected height={24}/>
-                    <Typography
-                      size={12}
-                      color="orange500"
-                      weight={600}
-                    >
+                    <LocationSelected height={24} />
+                    <Typography size={12} color="orange500" weight={600}>
                       주변 시설
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <LocationIcon height={24}/>
-                    <Typography
-                      size={12}
-                      color="gray500"
-                      weight={500}
-                    >
-                        주변 시설
+                    <LocationIcon height={24} />
+                    <Typography size={12} color="gray500" weight={500}>
+                      주변 시설
                     </Typography>
                   </ItemContainer>
-                )
+                );
               }
               if (route.name === 'Store') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <PtSelected height={24}/>
-                    <Typography
-                      size={12}
-                      color="orange500"
-                      weight={600}
-                    >
+                    <PtSelected height={24} />
+                    <Typography size={12} color="orange500" weight={600}>
                       PT
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <PtIcon height={24}/>
-                    <Typography
-                      size={12}
-                      color="gray500"
-                      weight={500}
-                    >
-                        PT
+                    <PtIcon height={24} />
+                    <Typography size={12} color="gray500" weight={500}>
+                      PT
                     </Typography>
                   </ItemContainer>
-                )
+                );
               }
               if (route.name === 'Settings') {
                 return focused ? (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <ShoppingSelected height={24}/>
-                    <Typography
-                      size={12}
-                      color="orange500"
-                      weight={600}
-                    >
+                    <ShoppingSelected height={24} />
+                    <Typography size={12} color="orange500" weight={600}>
                       스토어
                     </Typography>
                   </ItemContainer>
                 ) : (
                   <ItemContainer onPress={() => navigation.navigate(route)}>
-                    <ShoppingIcon height={24}/>
-                    <Typography
-                      size={12}
-                      color="gray500"
-                      weight={500}
-                    >
-                        스토어
+                    <ShoppingIcon height={24} />
+                    <Typography size={12} color="gray500" weight={500}>
+                      스토어
                     </Typography>
                   </ItemContainer>
-                )
+                );
               }
             },
             tabBarStyle: [
               {
                 height: 100,
-                backgroundColor: "#FFFFFF",
+                backgroundColor: '#FFFFFF',
                 borderTopWidth: 1,
-                borderTopColor: "#F1F2F3",
+                borderTopColor: '#F1F2F3',
               },
             ],
             indicatorStyle: {
@@ -191,26 +151,26 @@ const BottomNavigation: React.FC = () => {
               margin: 0,
               padding: 0,
             },
-            labelStyle: { margin: 0, padding: 0 },
+            labelStyle: {margin: 0, padding: 0},
             tabBarShowLabel: false,
             headerShown: false,
           })}>
           <Tab.Screen name="Chat" component={Chat} />
-          <Tab.Screen name="MyInfo" component={MyInfo} />
+          <Tab.Screen name="Location" component={Location} />
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Store" component={Store} />
           <Tab.Screen name="Settings" component={Settings} />
         </Tab.Navigator>
       </SafeAreaProvider>
     </>
-  )
-}
+  );
+};
 
 const ItemContainer = styled.TouchableOpacity`
   height: 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 export default BottomNavigation;
