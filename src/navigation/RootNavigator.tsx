@@ -12,20 +12,21 @@ import {createStackNavigator} from '@react-navigation/stack';
 // import {useCallback, useEffect} from "react";
 // import messaging from "@react-native-firebase/messaging";
 import BottomNavigation from "./BottomNavigation";
+import Login from "../screens/Login"
 
 const Stack = createStackNavigator();
 
-// const Auth = () => {
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         headerShown: false,
-//       }}>
-//       <Stack.Screen name="Login" component={Login} />
-//       <Stack.Screen name="Register" component={Register} />
-//     </Stack.Navigator>
-//   );
-// };
+const Auth = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="Login" component={Login} />
+      {/*<Stack.Screen name="Register" component={Register} />*/}
+    </Stack.Navigator>
+  );
+};
 
 const RootNavigator: React.FC = () => {
   // const [modal,setModal] = useRecoilState(modalState);
@@ -66,7 +67,7 @@ const RootNavigator: React.FC = () => {
       {/*<Stack.Screen name="Shop" component={Shop} />*/}
       {/*<Stack.Screen name="Reservation" component={Reservation} />*/}
       {/*<Stack.Screen name="ReservationResult" component={ReservationResult} />*/}
-      <Stack.Screen name="Tab" component={BottomNavigation} />
+      <Stack.Screen name="Tab" component={Auth} />
     </Stack.Navigator>
   );
 };
