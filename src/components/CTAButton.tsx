@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 const CTAButton = ({text, onClick}) => {
   return (
     <Container onPress={onClick}>
-      <Typography color="gray-100" size={14} weight={500}>
+      <Typography color="gray100" size={14} weight={500}>
         {text}
       </Typography>
     </Container>
@@ -14,8 +14,9 @@ const CTAButton = ({text, onClick}) => {
 
 const Container = styled.TouchableOpacity`
   padding: 0 16px;
-  width: 100%;
+  width: 358px;
   border-radius: 3px;
+  color: white;
   background: #ff6c19;
   height: 50px;
   display: flex;

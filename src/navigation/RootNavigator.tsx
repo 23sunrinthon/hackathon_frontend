@@ -11,7 +11,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 // import modalState from "@/store/modal";
 // import {useCallback, useEffect} from "react";
 // import messaging from "@react-native-firebase/messaging";
-import BottomNavigation from "./BottomNavigation";
 import Login from "../screens/Login"
 import StoreSearch from '@components/StoreSearch';
 import BottomNavigation from './BottomNavigation';
@@ -69,7 +68,7 @@ const RootNavigator: React.FC = () => {
       {/*<Stack.Screen name="Shop" component={Shop} />*/}
       {/*<Stack.Screen name="Reservation" component={Reservation} />*/}
       {/*<Stack.Screen name="ReservationResult" component={ReservationResult} />*/}
-      <Stack.Screen name="Tab" component={Auth} />
+      {/*<Stack.Screen name="Tab" component={Auth} />*/}
       {/* <Stack.Screen name="Main" component={Main} /> */}
       {/* <Stack.Screen name="Search" component={Search} /> */}
       {/* <Stack.Screen name="Auth" component={Auth} /> */}
