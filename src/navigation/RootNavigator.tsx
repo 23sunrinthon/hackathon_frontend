@@ -3,6 +3,7 @@ import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import StoreSearch from '@components/StoreSearch';
 import Register from '@screens/Register';
+import Measure from "@screens/Measure";
 import BottomNavigation from './BottomNavigation';
 import Login from '../screens/Login';
 
@@ -28,6 +29,7 @@ const RootNavigator: React.FC = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Tab" component={BottomNavigation} />
+      <Stack.Screen name="Measure" component={Measure} />
       <Stack.Screen name="StoreSearch" component={StoreSearch} />
       <Stack.Screen name="Auth" component={Auth} />
     </Stack.Navigator>

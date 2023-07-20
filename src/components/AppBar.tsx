@@ -69,12 +69,12 @@ export const AppBarWithTextCenter = ({title}: AppBarProps) => {
   );
 };
 
-export const AppBarWithTextAndLeft = () => {
+export const AppBarWithTextAndLeft = ({text}) => {
   return (
     <HeaderSpaceBetween>
       <Icon icon="arrow-back" size={18} />
       <Typography color="gray-600" size={18} weight={500}>
-        홈
+          {text}
       </Typography>
       <View />
     </HeaderSpaceBetween>
