@@ -18,12 +18,15 @@ export const login = async ({id, password}: LoginType) => {
     })
     .then(res => {
       if (res.status === 401) {
-        Promise.reject('아이디 또는 비밀번호가 일치하지 않습니다.');
+        throw new Error('아이디 또는 비밀번호가 일치하지 않습니다.');
+      }
+      if (res.data == 'User not found') {
+        throw new Error('아이디 또는 비밀번호가 일치하지 않습니다.');
       }
       AsyncStorage.setItem('refresh', res.data.refreshToken);
       AsyncStorage.setItem('access', res.data.accessToken);
     })
     .catch(err => {
-      Promise.reject(err);
+      throw new Error(err);
     });
 };

@@ -1,5 +1,10 @@
 import styled from 'styled-components/native';
-import {TouchableHighlight, TouchableOpacity, View} from 'react-native';
+import {
+  Pressable,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Typography from './Typography';
@@ -69,15 +74,17 @@ export const AppBarWithTextCenter = ({title}: AppBarProps) => {
   );
 };
 
-export const AppBarWithTextAndLeft = ({text}) => {
+
+export const AppBarWithTextAndLeft = ({text, onClick}) => {
   return (
-    <HeaderSpaceBetween>
-      <Icon icon="arrow-back" size={18} />
+    <HeaderLeft>
+      <TouchableOpacity onPress={onClick}>
+        <Icon name="arrow-back" size={18} />
+      </TouchableOpacity>
       <Typography color="gray-600" size={18} weight={500}>
           {text}
       </Typography>
-      <View />
-    </HeaderSpaceBetween>
+    </HeaderLeft>
   );
 };
 
@@ -100,6 +107,22 @@ export const AppBarWithSearchBar = ({onClick}) => {
     </HeaderSpaceBetween>
   );
 };
+
+const HeaderLeft = styled(View)`
+  width: 100%;
+  height: 44px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  padding: 0 16px;
+  justify-content: flex-start;
+  align-items: center;
+  //border-bottom-width: 1px;
+  gap: 18px;
+  //border-bottom-color: #E5E5E5;
+  border-bottom-width: ${props => (props.scrolled ? '1px' : '0px')};
+  border-color: #f1f2f3;
+`;
 
 const HeaderSpaceBetween = styled(View)`
   width: 100%;

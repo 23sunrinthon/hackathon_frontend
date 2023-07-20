@@ -6,6 +6,7 @@ import CTAButton from '@components/CTAButton';
 import {HStack, VStack} from '@components/Stack';
 import Checkbox from '@components/Checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AppBarWithTextAndLeft} from '@components/AppBar';
 import Typography from '../components/Typography';
 import {login} from '@/lib/api/auth';
 
@@ -14,14 +15,6 @@ const Register = ({navigation}) => {
   const [id, setId] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
-
-  useEffect(() => {
-    AsyncStorage.getItem('refresh').then(token => {
-      if (token) {
-        navigation.navigate('Main');
-      }
-    });
-  }, [navigation]);
 
   const handleLogin = async () => {
     if (id === '' || password === '') {
@@ -43,75 +36,82 @@ const Register = ({navigation}) => {
         flex: 1,
         backgroundColor: '#fff',
       }}>
-      <View>
-        <Screen>
-          <Parent>
-            <MainTitle width={131} height={186} />
-            <Typography color="gray-700" size={14} weight={500}>
-              헬스해서 몸짱이 되자
+      <AppBarWithTextAndLeft
+        text="헬짱 회원가입"
+        onClick={() => {
+          navigation.goBack();
+        }}
+      />
+      <Screen>
+        <ViewFront>
+          <UnderParent>
+            <Typography color="gray600" size={14} weight={500} left={5}>
+              아이디
             </Typography>
-          </Parent>
-          <ViewUnder>
-            <UnderParent>
-              <Typography color="gray-600" size={14} weight={500} left={5}>
-                아이디
-              </Typography>
-              <FormContainer>
-                <FormInput
-                  placeholder="아이디를 입력해주세요"
-                  value={id}
-                  onChangeText={text => setId(text)}
-                />
-              </FormContainer>
-            </UnderParent>
-            <UnderParent>
-              <Typography color="gray-600" size={14} weight={500} left={5}>
-                비밀번호
-              </Typography>
-              <FormContainer>
-                <FormInput
-                  placeholder="비밀번호를 입력해주세요"
-                  secureTextEntry={!passwordVisible}
-                  value={password}
-                  onChangeText={text => setPassword(text)}
-                />
-              </FormContainer>
-            </UnderParent>
-            <Layout3>
-              <HStack spacing={11} center justify>
-                <Checkbox
-                  enabled={passwordVisible}
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                />
-                <Typography color="gray-600" size={14} weight={500}>
-                  비밀번호 표시
-                </Typography>
-              </HStack>
-            </Layout3>
-            <Layout>
-              <CTAButton
-                text="로그인"
-                onClick={async () => {
-                  await handleLogin();
-                }}
-                disabled={id === '' || password === ''}
+            <FormContainer>
+              <FormInput
+                placeholder="아이디를 입력해주세요"
+                value={id}
+                onChangeText={text => setId(text)}
               />
-            </Layout>
-            <Layout2>
-              <Typography color="orange500" size={14} weight={500}>
-                아직 회원이 아니신가요?
+            </FormContainer>
+          </UnderParent>
+          <UnderParent>
+            <Typography color="gray600" size={14} weight={500} left={5}>
+              비밀번호
+            </Typography>
+            <FormContainer>
+              <FormInput
+                placeholder="비밀번호를 입력해주세요"
+                secureTextEntry={!passwordVisible}
+                value={password}
+                onChangeText={text => setPassword(text)}
+              />
+            </FormContainer>
+            <FormContainer>
+              <FormInput
+                placeholder="비밀번호를 다시 한번 입력해주세요"
+                secureTextEntry={!passwordVisible}
+                value={password}
+                onChangeText={text => setPassword(text)}
+              />
+            </FormContainer>
+          </UnderParent>
+          <Layout3>
+            <HStack spacing={11} center justify>
+              <Checkbox
+                enabled={passwordVisible}
+                onClick={() => setPasswordVisible(!passwordVisible)}
+              />
+              <Typography color="gray600" size={14} weight={500}>
+                비밀번호 표시
               </Typography>
-            </Layout2>
-          </ViewUnder>
-        </Screen>
-      </View>
+            </HStack>
+          </Layout3>
+        </ViewFront>
+        <ViewUnder>
+          <Layout>
+            <CTAButton
+              text="회원가입"
+              onClick={async () => {
+                await handleLogin();
+              }}
+              disabled={id === '' || password === ''}
+            />
+          </Layout>
+        </ViewUnder>
+      </Screen>
     </SafeAreaView>
   );
 };
 
 const ViewUnder = styled.View`
   width: 100%;
-  height: 420px;
+  height: 120px;
+`;
+const ViewFront = styled.View`
+  width: 100%;
+  flex: 1;
 `;
 
 const Layout2 = styled.View`
@@ -158,7 +158,7 @@ const UnderParent = styled.View`
 
 const Screen = styled.View`
   width: 100%;
-  height: 100%;
+  flex: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;

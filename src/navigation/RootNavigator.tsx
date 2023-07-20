@@ -12,6 +12,7 @@ const Stack = createStackNavigator();
 const Auth = () => {
   return (
     <Stack.Navigator
+      initialRouteName="Login"
       screenOptions={{
         headerShown: false,
       }}>
