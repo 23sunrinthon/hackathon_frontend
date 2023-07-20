@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Typography from '../components/Typography';
 import {login} from '@/lib/api/auth';
 
-const Login = ({navigation}) => {
+const Register = ({navigation}) => {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
   const [id, setId] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -188,4 +188,4 @@ const FormContainer = styled.View`
   margin-top: 11px;
 `;
 
-export default Login;
+export default Register;

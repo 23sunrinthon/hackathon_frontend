@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {createStackNavigator} from '@react-navigation/stack';
 import StoreSearch from '@components/StoreSearch';
+import Register from '@screens/Register';
 import BottomNavigation from './BottomNavigation';
 import Login from '../screens/Login';
 
@@ -14,7 +15,7 @@ const Auth = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Login" component={Login} />
-      {/* <Stack.Screen name="Register" component={Register} /> */}
+      <Stack.Screen name="Register" component={Register} />
     </Stack.Navigator>
   );
 };
