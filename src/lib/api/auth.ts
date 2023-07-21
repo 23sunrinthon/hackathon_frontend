@@ -23,7 +23,6 @@ export const login = async ({id, password}: LoginType) => {
       if (res.data == 'User not found') {
         throw new Error('아이디 또는 비밀번호가 일치하지 않습니다.');
       }
-      AsyncStorage.setItem('refresh', res.data.refreshToken);
       AsyncStorage.setItem('access', res.data.accessToken);
     })
     .catch(err => {

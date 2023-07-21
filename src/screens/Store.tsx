@@ -5,16 +5,42 @@ import {
   AppBarWithSearchBar,
   AppBarWithTextLeftAndIcon,
 } from '@components/AppBar';
+import {useQuery} from '@tanstack/react-query';
 import Typography from '../components/Typography';
+import {getGym} from '@/lib/api/gym';
+import {getStore} from '@/lib/api/store';
 
 const Store = ({navigation}) => {
+  const {data, loading, error} = useQuery(['store'], getStore);
   const [category, setCategory] = useState([
-    {id: 1, name: '영양제', selected: true},
-    {id: 2, name: '운동기구', selected: false},
-    {id: 3, name: '단백질', selected: false},
-    {id: 4, name: '보조기구', selected: false},
-    {id: 5, name: '다이어트식품', selected: false},
+    {id: 1, name: '영양제', categoryName: 'nutrients', selected: false},
+    {
+      id: 2,
+      name: '운동기구',
+      categoryName: 'fitness equipment',
+      selected: false,
+    },
+    {id: 3, name: '단백질', categoryName: 'protein', selected: false},
+    {id: 4, name: '보조기구', categoryName: 'adis', selected: false},
+    {id: 5, name: '다이어트식품', categoryName: 'diet food', selected: false},
   ]);
+
+  const categoryString = {
+    nutrients: '영양제',
+    'fitness equipment': '운동기구',
+    protein: '단백질',
+    'diet food': '다이어트식품',
+    adis: '보조기구',
+  };
+
+  const categoryStringReverse = {
+    영양제: 'nutrients',
+    운동기구: 'fitness equipment',
+    단백질: 'protein',
+    다이어트식품: 'diet food',
+    보조기구: 'adis',
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -68,22 +94,31 @@ const Store = ({navigation}) => {
           contentContainerStyle={{
             rowGap: 16,
           }}>
-          <CardLayoutHorizontal>
-            <Card />
-            <Card />
-          </CardLayoutHorizontal>
-          <CardLayoutHorizontal>
-            <Card />
-            <Card />
-          </CardLayoutHorizontal>
-          <CardLayoutHorizontal>
-            <Card />
-            <Card />
-          </CardLayoutHorizontal>
-          <CardLayoutHorizontal>
-            <Card />
-            <Card />
-          </CardLayoutHorizontal>
+          {data && category.filter(item => item.selected).length === 0
+            ? data.map((item, i) => (
+                <Card
+                  key={item.uuid}
+                  title={item.name}
+                  price={item.price}
+                  img={item.iamgeUrl}
+                  category={categoryString[item.category]}
+                />
+              ))
+            : category
+                .filter(item => item.selected)
+                .map((item, i) =>
+                  data
+                    .filter(dataItem => dataItem.category === item.categoryName)
+                    .map((item, i) => (
+                      <Card
+                        key={item.uuid}
+                        title={item.name}
+                        price={item.price}
+                        img={item.iamgeUrl}
+                        category={categoryString[item.category]}
+                      />
+                    )),
+                )}
         </CardLayout>
       </LayoutScroll>
     </SafeAreaView>
@@ -145,19 +180,23 @@ const LayoutScroll = styled.ScrollView`
   background-color: #fff;
 `;
 
-const Card = () => {
+const Card = ({title, category, img, price}) => {
   return (
     <CardComponentContainer>
-      <CardContainer />
+      <CardContainer
+        source={{
+          uri: img,
+        }}
+      />
       <CardContent>
         <Typography color="gray500" size={12} weight={400}>
-          자전거
+          {category}
         </Typography>
         <Typography color="gray500" size={14} weight={500}>
-          BMW 자전거 1대df
+          {title}
         </Typography>
         <Typography color="gray600" size={16} weight={700}>
-          30,000원
+          {price}원
         </Typography>
       </CardContent>
     </CardComponentContainer>
@@ -193,10 +232,9 @@ const CardContent = styled.View`
   gap: 6px;
 `;
 
-const CardContainer = styled.View`
+const CardContainer = styled.Image`
   height: 200px;
   border-radius: 6px;
-  background-color: white;
   border: 1px solid #efecec;
   //shadow-color: #c3c5db;
   //shadow-offset: 0 3px;

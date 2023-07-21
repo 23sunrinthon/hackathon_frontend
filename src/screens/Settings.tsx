@@ -6,11 +6,13 @@ import Banner from '@components/Banner';
 import {useFocusEffect} from '@react-navigation/native';
 import RepeatBlock from '@components/RepeatBlock';
 import CTAButton from '@components/CTAButton';
+import {useQuery} from '@tanstack/react-query';
 import Typography from '../components/Typography';
+import {getParty} from '@/lib/api/party';
 
 const Settings = ({navigation}) => {
   const [showBack, setShowBack] = useState(true);
-
+  const {data, loading, error} = useQuery(['party'], getParty);
   useFocusEffect(
     useCallback(() => {
       setShowBack(true);
@@ -23,7 +25,7 @@ const Settings = ({navigation}) => {
         backgroundColor: '#fff',
       }}>
       <Header>
-        <Typography color="gray-600" size={18} weight={500}>
+        <Typography color="gray600" size={18} weight={500}>
           함께하는 파티원
         </Typography>
       </Header>
@@ -36,42 +38,30 @@ const Settings = ({navigation}) => {
               }}
             />
           )}
-          <Layout
-            onPress={() => {
-              navigation.navigate('Party');
-            }}>
-            <RepeatBlock
-              title="선린인고 친구들"
-              message={500000}
-              member={5}
-              number={2}
-              type="party"
-            />
-          </Layout>
-          <Layout
-            onPress={() => {
-              navigation.navigate('Party');
-            }}>
-            <RepeatBlock
-              title="선린인고 친구들"
-              message={500000}
-              member={5}
-              number={2}
-              type="party"
-            />
-          </Layout>
-          <Layout
-            onPress={() => {
-              navigation.navigate('Party');
-            }}>
-            <RepeatBlock
-              title="선린인고 친구들"
-              message={500000}
-              member={5}
-              number={2}
-              type="party"
-            />
-          </Layout>
+          <PartyList>
+            {data &&
+              data.map((item, index) => {
+                return (
+                  <Layout
+                    onPress={() => {
+                      navigation.navigate('Party');
+                    }}
+                    key={index}>
+                    <RepeatBlock
+                      title={
+                        item.partyName.length > 10
+                          ? `${item.partyName.substring(0, 19)}...`
+                          : item.partyName
+                      }
+                      message={item.batingNum}
+                      member={item.member}
+                      number={index + 1}
+                      type="party"
+                    />
+                  </Layout>
+                );
+              })}
+          </PartyList>
         </Parent>
       </View>
       <BottomButton>
@@ -84,6 +74,11 @@ const Settings = ({navigation}) => {
     </SafeAreaView>
   );
 };
+
+const PartyList = styled.ScrollView`
+  width: 100%;
+  height: 100%;
+`;
 
 const Parent = styled.View`
   display: flex;

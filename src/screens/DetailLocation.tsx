@@ -5,8 +5,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import styled from 'styled-components/native';
 import {HStack, VStack} from '@components/Stack';
 import StarIcon from '@assets/icons/star.svg';
+import {useQuery} from '@tanstack/react-query';
+import {getGymById} from '@/lib/api/gym';
 
-const DetailLocation = ({navigation}) => {
+const DetailLocation = ({route, navigation}) => {
+  const {data} = useQuery(['gymdetail'], () => getGymById(route.params.id), {
+    enabled: !!route.params.id,
+  });
   return (
     <SafeAreaView
       style={{
@@ -23,120 +28,115 @@ const DetailLocation = ({navigation}) => {
 
         <View />
       </HeaderSpaceBetween>
-      <ScrollView
-        style={{
-          flex: 1,
-        }}
-        showsVerticalScrollIndicator={false}>
-        <HealthTop>
-          <HealthImage />
-          <HealthInfo>
-            <HealthInfoTop>
-              <Typography color="gray700" size={22} weight={600}>
-                햄보꾸 헬스장
+      {data && (
+        <ScrollView
+          style={{
+            flex: 1,
+          }}
+          showsVerticalScrollIndicator={false}>
+          <HealthTop>
+            <HealthImage
+              source={{
+                uri: data.imgUri,
+              }}
+            />
+            <HealthInfo>
+              <HealthInfoTop>
+                <Typography color="gray700" size={22} weight={600}>
+                  {data.name}
+                </Typography>
+                <StarContainer>
+                  <StarIcon width={20} height={20} />
+                  <StarIcon width={20} height={20} />
+                  <StarIcon width={20} height={20} />
+                  <StarIcon width={20} height={20} />
+                  <StarIcon width={20} height={20} />
+                  <Typography color="yellow500" size={12} weight={500}>
+                    {data.star}.0
+                  </Typography>
+                </StarContainer>
+              </HealthInfoTop>
+              <HeatlhTagList>
+                <LocationTag>
+                  <Typography color="orange500" size={12} weight={500}>
+                    {data.tag1}
+                  </Typography>
+                </LocationTag>
+                <LocationTag>
+                  <Typography color="orange500" size={12} weight={500}>
+                    {data.tag1}
+                  </Typography>
+                </LocationTag>
+                <LocationTag>
+                  <Typography color="orange500" size={12} weight={500}>
+                    {data.tag3}
+                  </Typography>
+                </LocationTag>
+              </HeatlhTagList>
+            </HealthInfo>
+          </HealthTop>
+          <Layout2>
+            <VStack spacing={16} justify>
+              <Typography color="gray700" size={16} weight={500}>
+                설명
               </Typography>
-              <StarContainer>
-                <StarIcon width={20} height={20} />
-                <StarIcon width={20} height={20} />
-                <StarIcon width={20} height={20} />
-                <StarIcon width={20} height={20} />
-                <StarIcon width={20} height={20} />
-                <Typography color="yellow500" size={12} weight={500}>
-                  5.0
+              <SB>
+                <Typography color="gray700" size={14} weight={500}>
+                  전화번호
                 </Typography>
-              </StarContainer>
-            </HealthInfoTop>
-            <HeatlhTagList>
-              <LocationTag>
-                <Typography color="orange500" size={12} weight={500}>
-                  다중 운동시설 보유
+                <Typography color="gray700" size={14} weight={500}>
+                  {data.phoneNumber}
                 </Typography>
-              </LocationTag>
-              <LocationTag>
-                <Typography color="orange500" size={12} weight={500}>
-                  활발한 분위기
+              </SB>
+              <SB>
+                <Typography color="gray700" size={14} weight={500}>
+                  영업일
                 </Typography>
-              </LocationTag>
-            </HeatlhTagList>
-          </HealthInfo>
-        </HealthTop>
-        <Layout2>
-          <VStack spacing={16} justify>
+                <Typography color="gray700" size={14} weight={500}>
+                  {data.businessDay}
+                </Typography>
+              </SB>
+              <SB>
+                <Typography color="gray700" size={14} weight={500}>
+                  위치
+                </Typography>
+                <Typography color="gray700" size={14} weight={500}>
+                  {data.address}
+                </Typography>
+              </SB>
+            </VStack>
+          </Layout2>
+          <LayoutDivider />
+          <Layout3>
             <Typography color="gray700" size={16} weight={500}>
-              설명
+              소개
             </Typography>
-            <SB>
-              <Typography color="gray700" size={14} weight={500}>
-                전화번호
-              </Typography>
-              <Typography color="gray700" size={14} weight={500}>
-                032-6829-7824
-              </Typography>
-            </SB>
-            <SB>
-              <Typography color="gray700" size={14} weight={500}>
-                영업일
-              </Typography>
-              <Typography color="gray700" size={14} weight={500}>
-                08:00 ~ 24:00 화요일 휴무
-              </Typography>
-            </SB>
-            <SB>
-              <Typography color="gray700" size={14} weight={500}>
-                위치
-              </Typography>
-              <Typography color="gray700" size={14} weight={500}>
-                서울 용산구 이촌로1, 104호 1층, 지하 1층 전체
-              </Typography>
-            </SB>
-          </VStack>
-        </Layout2>
-        <LayoutDivider />
-        <Layout3>
-          <Typography color="gray700" size={16} weight={500}>
-            소개
-          </Typography>
-          <Typography color="gray600" size={14} weight={500}>
-            흥미로운 운동 환경과 다양한 프로그램으로 건강한 라이프스타일을
-            만들어드립니다. 전문 트레이너들과 함께 목표를 이루어내는 동기부여를
-            제공합니다. 언제든지 방문하시어 편안한 분위기에서 자유롭게 운동을
-            즐기세요. 우리 헬스장에서 건강과 즐거움을 만나보세요! 함께라면 더
-            나은 자신을 발견할 수 있습니다.
-          </Typography>
-        </Layout3>
-        <LayoutDivider />
-        <Layout3>
-          <Typography color="gray700" size={16} weight={500}>
-            트레이너 소개
-          </Typography>
-          <VStack spacing={8} center>
-            <TrainerProfile
-              name="김종국"
-              description="다양한 운동 경험과 자격증을 바탕으로 개인 맞춤형 운동 계획을 제공합니다. 건강과 목표 달성을 위해 함께 노력하겠습니다!"
-            />
-            <TrainerProfile
-              name="김종국"
-              description="다양한 운동 경험과 자격증을 바탕으로 개인 맞춤형 운동 계획을 제공합니다. 건강과 목표 달성을 위해 함께 노력하겠습니다!"
-            />
-            <TrainerProfile
-              name="김종국"
-              description="다양한 운동 경험과 자격증을 바탕으로 개인 맞춤형 운동 계획을 제공합니다. 건강과 목표 달성을 위해 함께 노력하겠습니다!"
-            />
-            <TrainerProfile
-              name="김종국"
-              description="다양한 운동 경험과 자격증을 바탕으로 개인 맞춤형 운동 계획을 제공합니다. 건강과 목표 달성을 위해 함께 노력하겠습니다!"
-            />
-            <TrainerProfile
-              name="김종국"
-              description="다양한 운동 경험과 자격증을 바탕으로 개인 맞춤형 운동 계획을 제공합니다. 건강과 목표 달성을 위해 함께 노력하겠습니다!"
-            />
-            <TrainerProfile
-              name="김종국"
-              description="다양한 운동 경험과 자격증을 바탕으로 개인 맞춤형 운동 계획을 제공합니다. 건강과 목표 달성을 위해 함께 노력하겠습니다!"
-            />
-          </VStack>
-        </Layout3>
-      </ScrollView>
+            <Typography color="gray600" size={14} weight={500}>
+              {data.description}
+            </Typography>
+          </Layout3>
+          <LayoutDivider />
+          <Layout3>
+            <Typography color="gray700" size={16} weight={500}>
+              트레이너 소개
+            </Typography>
+            <VStack spacing={8} center>
+              <TrainerProfile
+                name="김종국"
+                description="다양한 운동 경험과 자격증을 바탕으로 개인 맞춤형 운동 계획을 제공합니다. 건강과 목표 달성을 위해 함께 노력하겠습니다!"
+              />
+              <TrainerProfile
+                name="김계란"
+                description="다양한 운동 경험과 자격증을 바탕으로 개인 맞춤형 운동 계획을 제공합니다. 건강과 목표 달성을 위해 함께 노력하겠습니다!"
+              />
+              <TrainerProfile
+                name="이왕렬"
+                description="다양한 운동 경험과 자격증을 바탕으로 개인 맞춤형 운동 계획을 제공합니다. 건강과 목표 달성을 위해 함께 노력하겠습니다!"
+              />
+            </VStack>
+          </Layout3>
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };
@@ -144,10 +144,14 @@ const DetailLocation = ({navigation}) => {
 const TrainerProfile = ({name, description}) => {
   return (
     <TrainerProfileContainer>
-      <TrainerProfileImage />
+      <TrainerProfileImage
+        source={{
+          uri: 'https://i.namu.wiki/i/hgQnlYwLBxtaMqMYA-fPpQe-2OtPlKWNo-tR-RFsGept0pKM_EqhwFKxeM82y2yQs1Q8toaoUId7BfLcFE2ZiA.webp',
+        }}
+      />
       <TrainerInfo>
         <Typography color="gray700" size={16} weight={600}>
-          김종국
+          {name}
         </Typography>
         <Typography color="gray400" size={12} weight={500}>
           {description}
@@ -164,7 +168,7 @@ const TrainerInfo = styled.View`
   width: 80%;
 `;
 
-const TrainerProfileImage = styled.View`
+const TrainerProfileImage = styled.Image`
   width: 44px;
   height: 44px;
   border-radius: 22px;
@@ -243,11 +247,10 @@ const HealthTop = styled.View`
   align-items: flex-end;
 `;
 
-const HealthImage = styled(View)`
+const HealthImage = styled.Image`
   width: 130px;
   height: 130px;
   border-radius: 10px;
-  background: #000;
 `;
 
 const HealthInfo = styled(View)`
