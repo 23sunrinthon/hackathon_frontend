@@ -3,9 +3,13 @@ import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import styled from 'styled-components/native';
 import {AppBarWithTextLeftAndIcon} from '@components/AppBar';
 import LocationCard from '@components/LocationCard';
+import {useQuery} from '@tanstack/react-query';
 import Typography from '../components/Typography';
+import {getGym} from '@/lib/api/gym';
 
 const Location = ({navigation}) => {
+  const {data, loading, error} = useQuery(['gym'], getGym);
+
   return (
     <SafeAreaView
       style={{
@@ -20,27 +24,23 @@ const Location = ({navigation}) => {
         }}
       />
       <ScrollView style={{flex: 1}}>
-        <Layout
-          onPress={() => {
-            navigation.navigate('LocationDetail');
-          }}>
-          <LocationCard />
-        </Layout>
-        <Layout>
-          <LocationCard />
-        </Layout>
-        <Layout>
-          <LocationCard />
-        </Layout>
-        <Layout>
-          <LocationCard />
-        </Layout>
-        <Layout>
-          <LocationCard />
-        </Layout>
-        <Layout>
-          <LocationCard />
-        </Layout>
+        {data &&
+          data.map((item, i) => (
+            <Layout
+              onPress={() => {
+                navigation.navigate('LocationDetail', {id: item.uuid});
+              }}>
+              <LocationCard
+                key={item.uuid}
+                name={item.name}
+                tag1={item.tag1}
+                tag2={item.tag2}
+                tag3={item.tag3}
+                star={item.star}
+                img={item.imgUri}
+              />
+            </Layout>
+          ))}
       </ScrollView>
     </SafeAreaView>
   );

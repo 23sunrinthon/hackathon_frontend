@@ -8,13 +8,29 @@ import {
 } from '@components/AppBar';
 import CTAButton from '@components/CTAButton';
 import Banner from '@components/Banner';
+import {useRecoilState} from 'recoil';
 import Typography from '../components/Typography';
+import {partyState} from '@/store/party';
 
 const NewGroup = ({navigation}) => {
   const [name, setName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [money, setMoney] = React.useState('');
+  const [data, setData] = useRecoilState(partyState);
 
+  useEffect(() => {
+    if (data) {
+      if (data.partyName !== '') {
+        setName(data.partyName);
+      }
+      if (data.partyPassword !== '') {
+        setPassword(data.partyPassword);
+      }
+      if (data.batingNum !== null) {
+        setMoney(data.batingNum);
+      }
+    }
+  }, [data]);
   return (
     <SafeAreaView
       style={{
@@ -23,7 +39,16 @@ const NewGroup = ({navigation}) => {
       }}>
       <AppBarWithTextAndLeft
         text="그룹 만들기"
-        onClick={() => navigation.goBack()}
+        onClick={() => {
+          setData({
+            partyName: '',
+            partyPassword: '',
+            batingNum: null,
+            goal: null,
+            exercise: [],
+          });
+          navigation.goBack();
+        }}
       />
       <View>
         <UnderParent>
@@ -67,6 +92,12 @@ const NewGroup = ({navigation}) => {
       <BottomButton>
         <CTAButton
           onClick={() => {
+            setData({
+              ...data,
+              partyName: name,
+              partyPassword: password,
+              batingNum: money,
+            });
             navigation.navigate('GroupNext');
           }}
           text="다음 단계"

@@ -68,11 +68,6 @@ const Home = ({navigation}) => {
         </Layout>
         <Layout2>
           <Typography color="gray700" size={16} weight={600}>
-            오늘의 목표
-          </Typography>
-        </Layout2>
-        <Layout2>
-          <Typography color="gray700" size={16} weight={600}>
             내 파티
           </Typography>
         </Layout2>
@@ -107,8 +102,28 @@ const Home = ({navigation}) => {
               />
             </CardLayoutHorizontal>
             <CardLayoutHorizontal>
-              <Card />
-              <Card />
+              <Card
+                name="아이왑"
+                rank1="조성훈"
+                rank2="이서율"
+                rank3="주현명"
+                myRank={2}
+                onClick={() => {
+                  navigation.navigate('Party');
+                }}
+                myName="이서율"
+              />
+              <Card
+                name="솦과최강"
+                rank1="이왕렬"
+                rank2="김소연"
+                rank3="한지연"
+                myRank={4}
+                onClick={() => {
+                  navigation.navigate('Party');
+                }}
+                myName="심희원"
+              />
             </CardLayoutHorizontal>
           </CardLayout>
         </Layout3>
@@ -132,8 +147,8 @@ const Home = ({navigation}) => {
             navigation.navigate('Measure');
           }}>
           <RepeatBlock
-            title="필라테스"
-            message="필라테스는 근력과 유연성을 개선하는 운동입니다."
+            title="달리기"
+            message="달리기는 체력 단련과 신체 조절에 탁월한 운동입니다."
             number={2}
           />
         </Layout4>

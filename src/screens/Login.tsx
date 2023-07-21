@@ -16,7 +16,7 @@ const Login = ({navigation}) => {
   const [error, setError] = React.useState('');
 
   useEffect(() => {
-    AsyncStorage.getItem('refresh').then(token => {
+    AsyncStorage.getItem('access').then(token => {
       if (token) {
         navigation.navigate('Tab');
       }
@@ -27,7 +27,7 @@ const Login = ({navigation}) => {
     if (id === '' || password === '') {
       setError('아이디와 비밀번호를 입력해주세요.');
     } else {
-      login({id: 'kimdole29@icloud.com', password: 'kimdole29#'})
+      login({id: 'kimdole29@gmail.com', password: 'kimdole29##'})
         .then(res => {
           navigation.navigate('Tab');
         })

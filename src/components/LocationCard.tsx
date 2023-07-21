@@ -4,16 +4,20 @@ import {VStack, HStack} from './Stack';
 import Typography from './Typography';
 import Star from '../assets/icons/star.svg';
 
-const LocationCard = () => {
+const LocationCard = ({name, star, tag1, tag2, tag3, img}) => {
   return (
     <Container>
       <LocationCardContainer>
-        <LocationImage />
+        <LocationImage
+          source={{
+            uri: img,
+          }}
+        />
         <LocationInfo>
           <VStack spacing={4} justify>
             <HStack spacing={6} center justify>
               <Typography color="gray600" size={16} weight={500}>
-                행복헬스장
+                {name}
               </Typography>
               <Typography color="gray500" size={12} weight={500}>
                 13m
@@ -22,24 +26,24 @@ const LocationCard = () => {
             <HStack spacing={4} center justify>
               <Star />
               <Typography color="yellow500" size={12} weight={500}>
-                5.0 (2)
+                {star}.0 (2)
               </Typography>
             </HStack>
           </VStack>
           <LocationTagList>
             <LocationTag>
               <Typography color="orange500" size={12} weight={500}>
-                필라테스
+                {tag1}
               </Typography>
             </LocationTag>
             <LocationTag>
               <Typography color="orange500" size={12} weight={500}>
-                헬스
+                {tag2}
               </Typography>
             </LocationTag>
             <LocationTag>
               <Typography color="orange500" size={12} weight={500}>
-                다중 운동시설 보유
+                {tag3}
               </Typography>
             </LocationTag>
           </LocationTagList>
@@ -99,7 +103,7 @@ const LocationCardContainer = styled.View`
   gap: 16px;
 `;
 
-const LocationImage = styled.View`
+const LocationImage = styled.Image`
   width: 90px;
   height: 90px;
   flex-shrink: 0;
