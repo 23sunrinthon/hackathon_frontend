@@ -165,7 +165,7 @@ const Parent = styled.View`
 `
 
 const MarginGap = styled.View`
-margin-top: 10px
+  margin-top: 10px
 `
 
 const FormInput = styled.TextInput.attrs({

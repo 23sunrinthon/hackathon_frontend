@@ -13,7 +13,9 @@ import Go from '@assets/icons/go';
 import Typography from '../components/Typography';
 
 const Measure = ({navigation}) => {
-  const [timer, setTimer] = useState([0, 0, 0]);
+    const [showBack, setShowBack] = useState(true);
+
+    const [timer, setTimer] = useState([0, 0, 0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -71,9 +73,15 @@ const Measure = ({navigation}) => {
         </Aim2>
       </Aim>
       <Parent>
-        <Banner />
-        <Banner />
-        <Banner />
+        <Banner onClick={() => {
+            setShowBack(false);
+        }}/>
+        <Banner onClick={() => {
+            setShowBack(false);
+        }}/>
+        <Banner onClick={() => {
+            setShowBack(false);
+        }}/>
       </Parent>
       <BottomButton>
         <CTAButton

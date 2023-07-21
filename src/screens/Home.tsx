@@ -18,8 +18,6 @@ import {
 
 const Home = ({navigation}) => {
   const [scrolled, setScrolled] = React.useState(false);
-  const [showBack, setShowBack] = useState(true);
-
   const PartyData = [
     {
       name: '선린공듀들',
@@ -38,6 +36,9 @@ const Home = ({navigation}) => {
       myName: '주현명',
     },
   ];
+
+  const [showBack, setShowBack] = useState(true);
+
 
   useFocusEffect(
     useCallback(() => {
